@@ -1,7 +1,7 @@
 {
   "name": "boss-pre-setup",
   "description": "STEP ONE OF TWO. Prepares this computer to receive your Authority Operating System, then hands off to the system's own setup. It does not install the system itself.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Krista Mashore Coaching"
   }
