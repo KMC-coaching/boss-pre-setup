@@ -182,11 +182,40 @@ do not apologise for them - they exist because they are theirs.
    are, from something else. If they are signed in but missing scopes, top them up with
    `gh auth refresh` rather than making them sign in again.
 
-   If they are not signed in, run the browser flow:
+   If they are not signed in, run the browser flow **in the background**, never in the
+   foreground. Verified on 2026-09-17: inside a tool call there is no terminal attached,
+   and this command prints the code and then blocks, polling, until the student finishes
+   in their browser. Run in the foreground it looks frozen and eventually times out. Run
+   in the background it works exactly as intended.
 
    ```
-   gh auth login --hostname github.com --git-protocol https --web --scopes "repo,read:org,gist,workflow"
+   gh auth login --hostname github.com --git-protocol https --web \
+     --scopes "repo,read:org,gist,workflow" < /dev/null > /tmp/boss-signin.txt 2>&1 &
    ```
+
+   Within a second or two that file contains, verbatim:
+
+   ```
+   ! First copy your one-time code: XXXX-XXXX
+   Open this URL to continue in your web browser: https://github.com/login/device
+   ```
+
+   Read the code out of that file and **give it to them with the address, in one message**:
+
+   > "Go to **github.com/login/device** and type in this code: **XXXX-XXXX**
+   >
+   > Sign in if it asks, approve on your phone if it asks, and come back here. I'll be
+   > watching for it - you don't need to tell me when you're done."
+
+   Say the address and the code and nothing else. Do not paste the raw output at them, do
+   not explain what a one-time code is, and never ask them to run the command themselves.
+   You generate the code; they type it in one box.
+
+   Then **poll `gh auth status` until it comes back signed in.** Do not sit and wait on
+   the background job. If nothing has happened after about ten minutes the code has
+   expired - say so plainly, start it again, and give them a fresh one. An expired code
+   fails with a message that sounds like they did something wrong; they did not, and they
+   should be told that in the same breath.
 
    `repo` is the one that matters - their system is private, and without it the clone in
    Step 6 fails. `read:org` and `gist` are the documented minimum alongside it; `workflow`
