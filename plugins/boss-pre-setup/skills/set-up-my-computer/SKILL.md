@@ -174,10 +174,37 @@ and that gap is precisely what this step exists to close.
 These are the only human steps in the entire install. Do not attempt them yourself, and
 do not apologise for them - they exist because they are theirs.
 
-1. **Sign in to GitHub.** Start the browser sign-in and tell them what is about to
-   happen: *"A browser tab is opening. Sign in to your GitHub account, and approve it on
-   your phone if it asks. Come back here when it says you're done."* Wait. Then confirm
-   the sign-in landed before moving on.
+1. **Sign in to GitHub.** Do not improvise this command; it is the one step that is
+   awkward to retry, and a wrong scope here fails later at the clone with an error that
+   looks like a permissions problem instead of a sign-in problem.
+
+   **First check whether they are already signed in.** `gh auth status`. Many students
+   are, from something else. If they are signed in but missing scopes, top them up with
+   `gh auth refresh` rather than making them sign in again.
+
+   If they are not signed in, run the browser flow:
+
+   ```
+   gh auth login --hostname github.com --git-protocol https --web --scopes "repo,read:org,gist,workflow"
+   ```
+
+   `repo` is the one that matters - their system is private, and without it the clone in
+   Step 6 fails. `read:org` and `gist` are the documented minimum alongside it; `workflow`
+   saves a second sign-in later. Remember: after a home-folder install, `gh` is not on
+   PATH, so call it by its full path.
+
+   Tell them what is about to happen before it happens: *"A browser tab is opening. Sign
+   in to your GitHub account, and approve it on your phone if it asks. Come back here
+   when it says you're done."* Then wait. Do not run anything else while that tab is open.
+
+   **Then run `gh auth setup-git`.** This lets the clone in Step 6 authenticate as them.
+   Skipping it is a common cause of the clone failing right after a sign-in that plainly
+   worked.
+
+   **Confirm it landed** with `gh auth status` and check the account name that comes back
+   is the one they expect, before moving on. If they have more than one GitHub account,
+   this is where the wrong one gets caught - and Step 5 is where it otherwise shows up as
+   a confusing "you don't have access" ten minutes later.
 2. **Accept the invitation to their system.** They were sent one by email. If the access
    check in Step 5 fails, this is almost always why. Tell them to look for it, including
    in spam.
