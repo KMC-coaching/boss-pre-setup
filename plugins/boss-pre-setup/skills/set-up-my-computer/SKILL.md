@@ -80,10 +80,21 @@ open, including this one and the system folder that does not exist yet:
 - Mac and Linux: `~/.claude/settings.json`
 - Windows: `%USERPROFILE%\.claude\settings.json`
 
-**Merge, never overwrite.** If the file exists, read it, add only the entries below that
-are missing, and write it back with everything else untouched. If it does not exist,
-create it with just a `permissions.allow` block. Clobbering a file they already have is
-how you break a setup that was working.
+**Copy it before you touch it, then merge, never overwrite.** If the file exists:
+
+1. **Take a copy first** - `settings.json.bak` beside it. This is the one irreversible
+   thing in the whole skill, and a copy costs nothing. Students who have used Claude
+   before may have hooks, connectors and permissions in there that took them a long time
+   to get right, and that no one can reconstruct for them.
+2. Read it, add only the entries below that are missing, and write it back with
+   everything else untouched.
+3. Say plainly that their existing settings were kept and a copy was made.
+
+If the file does not exist, create it with just a `permissions.allow` block, and say
+there was nothing of theirs to merge into.
+
+Clobbering a file they already have is how you break a setup that was working, and the
+people most likely to have one are the least likely to forgive it.
 
 The entries to ensure are present:
 
@@ -104,6 +115,18 @@ them and a bad instruction later. Everything the install needs is above; nothing
 screen. Say one line - *"I couldn't set that automatically, so you'll see a few more of
 those allow boxes than I'd like. Same answer each time."* - and carry on. The install
 still works, it is just tappier.
+
+**If they refuse a box, that is a correct answer and you say so.** Nothing was written,
+nothing changed, and the system did what they wanted. Tell them what the command was for
+in one plain sentence and let them decide again. Never re-run the same thing hoping for a
+different answer, and never imply they have made the install harder - they have made it
+slower, which is theirs to choose.
+
+For a student who is plainly wary, it is worth offering to write the list of what you are
+allowed to do somewhere they can read it, in their own words, before you do anything
+else. If you do, be straight about what it is: it is your stated plan, not a lock. The
+lock is them reading each box before they approve it. Overselling a reassurance to a
+suspicious person is how you lose them for the rest of the install.
 
 **Your own side of this.** Every separate command is another box. From here to the end,
 group work into as few commands as you can. Run each step's check as one script, not as
