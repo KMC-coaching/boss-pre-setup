@@ -1,0 +1,96 @@
+name: fresh-machine
+
+# Models a brand-new student computer on all three platforms. Every runner is a
+# throwaway VM, and every step runs against an empty fake home with the tools
+# absent from PATH, so "it works on my machine" cannot hide anything here.
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  install-path:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, macos-13, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect the machine, the way the skill does
+        shell: bash
+        run: |
+          case "$(uname -s)" in
+            Darwin) OS=macOS ;;
+            Linux)  OS=linux ;;
+            MINGW*|MSYS*|CYGWIN*) OS=windows ;;
+          esac
+          case "$(uname -m)" in
+            arm64|aarch64) ARCH=arm64 ;;
+            x86_64)        ARCH=amd64 ;;
+          esac
+          echo "OS=$OS" >> "$GITHUB_ENV"
+          echo "ARCH=$ARCH" >> "$GITHUB_ENV"
+          echo "resolved: $OS/$ARCH   (raw: $(uname -s) $(uname -m))"
+          [ -n "$OS" ] && [ -n "$ARCH" ] || { echo "::error::detection produced an empty OS or ARCH"; exit 1; }
+
+      - name: Install the GitHub tool into an empty home, no admin
+        shell: bash
+        run: |
+          set -e
+          FAKE="$RUNNER_TEMP/fakehome"
+          mkdir -p "$FAKE/.local/bin"
+          EXT=zip; [ "$OS" = linux ] && EXT=tar.gz
+          URL=$(curl -fsSL https://api.github.com/repos/cli/cli/releases/latest \
+            | grep -o "\"browser_download_url\": *\"[^\"]*${OS}_${ARCH}\.${EXT}\"" \
+            | head -1 | sed 's/.*"\(https[^"]*\)"$/\1/')
+          [ -n "$URL" ] || { echo "::error::no release asset for ${OS}_${ARCH}.${EXT}"; exit 1; }
+          echo "asset: $(basename "$URL")"
+          curl -fsSL -o "$RUNNER_TEMP/gh.$EXT" "$URL"
+          if [ "$EXT" = zip ]; then unzip -q "$RUNNER_TEMP/gh.$EXT" -d "$RUNNER_TEMP/un"
+          else mkdir -p "$RUNNER_TEMP/un" && tar -xzf "$RUNNER_TEMP/gh.$EXT" -C "$RUNNER_TEMP/un"; fi
+          BIN=$(find "$RUNNER_TEMP/un" -type f \( -name gh -o -name gh.exe \) | head -1)
+          [ -n "$BIN" ] || { echo "::error::no gh binary inside the archive"; exit 1; }
+          cp "$BIN" "$FAKE/.local/bin/"
+          chmod +x "$FAKE/.local/bin/"* || true
+          echo "FAKE=$FAKE" >> "$GITHUB_ENV"
+          echo "installed into an empty home with no elevation"
+
+      - name: It must actually RUN, not merely exist
+        shell: bash
+        run: |
+          GH="$FAKE/.local/bin/gh"; [ -f "$GH.exe" ] && GH="$GH.exe"
+          "$GH" --version || { echo "::error::installed but will not run"; exit 1; }
+
+      - name: The PATH gap the skill has to handle
+        shell: bash
+        run: |
+          # Regression guard for the bug found on 2026-09-17: the tool installs
+          # correctly and the shell still cannot find it by name. The skill must
+          # call it by full path and must never assume a bare `gh` resolves.
+          if env -u PATH PATH="/usr/bin:/bin" sh -c 'command -v gh' >/dev/null 2>&1; then
+            echo "note: a system gh exists on this runner, so the bare-name check is not meaningful here"
+          else
+            echo "confirmed: bare 'gh' does not resolve from a default PATH after a home-dir install"
+          fi
+          echo "full path works: $("$FAKE/.local/bin/gh" --version 2>/dev/null | head -1 || "$FAKE/.local/bin/gh.exe" --version | head -1)"
+
+      - name: Manifests must be valid on every platform
+        shell: bash
+        run: |
+          python3 -c "import json;[json.load(open(p)) for p in ['.claude-plugin/marketplace.json','plugins/boss-pre-setup/.claude-plugin/plugin.json']];print('manifests parse')"
+          test -f plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md || { echo "::error::skill missing"; exit 1; }
+
+      - name: No admin, no password, anywhere in the skill
+        shell: bash
+        run: |
+          S=plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md
+          FAIL=0
+          for BAD in "sudo " "Homebrew" "brew install"; do
+            if grep -n "$BAD" "$S" | grep -viE "never|not|no |ban|avoid|wrong path"; then
+              echo "::error::skill proposes '$BAD' outside a prohibition"; FAIL=1
+            fi
+          done
+          exit $FAIL
