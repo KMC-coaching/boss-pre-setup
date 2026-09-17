@@ -4,7 +4,7 @@ description: Prepares a brand-new student's computer to receive their Authority 
 version: 1.0.0
 ---
 
-# Set Up My Computer
+# Set Up My Computer (step one of two)
 
 ## What this is, and where it stops
 

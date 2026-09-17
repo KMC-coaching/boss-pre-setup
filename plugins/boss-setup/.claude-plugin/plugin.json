@@ -1,8 +1,0 @@
-{
-  "name": "boss-setup",
-  "description": "Prepares this computer to install your Authority Operating System, then hands off to the system's own setup.",
-  "version": "1.0.0",
-  "author": {
-    "name": "Krista Mashore Coaching"
-  }
-}

@@ -1,7 +1,10 @@
-# BOSS Setup
+# BOSS Pre-Setup
 
-The one-step installer that prepares a student's computer for their Authority Operating
+**Step one of two.** This prepares a student's computer for their Authority Operating
 System, before they have anything installed and before their GitHub account is connected.
+
+It does **not** install the operating system. It gets the machine ready and then hands
+off to the system's own setup, which arrives with the system itself and is not public.
 
 It is published here, publicly, for exactly one reason: a student has to be able to
 install it before they can reach anything private. Nothing proprietary lives in this
@@ -11,7 +14,7 @@ and everything that personalizes it, lives elsewhere and is not public.
 
 ## For students
 
-Inside Claude, add this marketplace and install the **boss-setup** plugin, then say:
+Inside Claude, add this marketplace and install the **boss-pre-setup** plugin, then say:
 
 > set up my computer
 
