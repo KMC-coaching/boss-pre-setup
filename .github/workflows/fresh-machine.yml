@@ -88,9 +88,19 @@ jobs:
         run: |
           S=plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md
           FAIL=0
-          for BAD in "sudo " "Homebrew" "brew install"; do
-            if grep -n "$BAD" "$S" | grep -viE "never|not|no |ban|avoid|wrong path"; then
-              echo "::error::skill proposes '$BAD' outside a prohibition"; FAIL=1
-            fi
-          done
+          # Look for the tokens used as INSTRUCTIONS, not merely mentioned. The
+          # skill's banned-vocabulary list names "Homebrew" and "sudo" precisely
+          # so they are never said to a student, and a bare grep reads that
+          # prohibition as a violation. Match command-shaped usage instead.
+          if grep -nE '(^|[`( ])sudo [a-z]' "$S"; then
+            echo "::error::skill appears to invoke sudo"; FAIL=1
+          fi
+          if grep -nE 'brew install|install Homebrew|via Homebrew|using Homebrew' "$S"; then
+            echo "::error::skill appears to route through Homebrew"; FAIL=1
+          fi
+          if grep -niE 'ask (them |the student )?for (their )?(computer |login )?password' "$S" \
+             | grep -viE 'never|do not|don.t'; then
+            echo "::error::skill appears to ask for a password"; FAIL=1
+          fi
+          [ $FAIL -eq 0 ] && echo "clean: no sudo, no Homebrew, no password request"
           exit $FAIL
