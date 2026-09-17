@@ -224,10 +224,17 @@ do not apologise for them - they exist because they are theirs.
    You generate the code; they type it in one box.
 
    Then **poll `gh auth status` until it comes back signed in.** Do not sit and wait on
-   the background job. If nothing has happened after about ten minutes the code has
-   expired - say so plainly, start it again, and give them a fresh one. An expired code
-   fails with a message that sounds like they did something wrong; they did not, and they
-   should be told that in the same breath.
+   the background job.
+
+   **If they report the code was rejected, do not assert why.** You cannot see what they
+   typed, and there are two ordinary causes: a character mistyped, or the code went stale
+   because a few minutes passed. Both are common and neither is their fault. Say both,
+   and issue a fresh one immediately - a new code costs nothing and is faster than
+   diagnosing the old one. A rehearsal on 2026-09-17 blamed expiry for what was actually
+   a typo; the student is not harmed by that, but stating an unverified cause is how a
+   confident wrong explanation gets believed later.
+
+   Before issuing a fresh code, stop the previous attempt so two are not polling at once.
 
    `repo` is the one that matters - their system is private, and without it the clone in
    Step 6 fails. `read:org` and `gist` are the documented minimum alongside it; `workflow`
@@ -257,6 +264,22 @@ password.
 
 ## Step 5 - Confirm they can actually reach their system
 
+**Know which system you are looking for before you look.** There are two, and they are
+not interchangeable:
+
+| Who they are | Their system |
+|---|---|
+| Real estate agent, or lender (the default) | `Krista-Mashore-Coaching/Agent-Authority-Operating-System` |
+| Any other professional or business owner | `Krista-Mashore-Coaching/Authority-Operating-System` |
+
+If it is not obvious which they are, ask one plain question - *"Are you a real estate
+agent, or something else?"* - and route on the answer. **Never invent a name and never
+guess at one.** A rehearsal on 2026-09-17 made up a repository that does not exist and
+would have failed at the last step, after the student had done all the work.
+
+Confirm the account they just signed in as can actually see that system before trying to
+bring anything down.
+
 Check that their signed-in account can see the system they were given access to, before
 trying to bring anything down. A failure here is one of exactly two things and you should
 say both:
@@ -271,10 +294,17 @@ session.
 
 ## Step 6 - Bring their system down onto the machine
 
-Make the folder that holds it, in their home folder, and bring the system down into it
-under a name built from their business name. Ask for the business name in plain words if
-it has not come up yet - *"What should I call your folder? Your business name is the
-usual answer."*
+**The destination is not yours to choose.** `setup-my-os` takes over in Step 7 and it
+expects the system in a specific place under a specific name. Put it anywhere else and
+the handoff lands in a folder the next skill cannot find.
+
+- Parent folder: `~/Sites/` on Mac and Linux, `Sites\` under their user folder on Windows
+- Folder name: `BOSS-OS-<business-name>`, lowercased and hyphenated
+- If that folder already exists, append `-2`, then `-3`. Do not ask which they prefer
+
+Ask for the business name in plain words if it has not come up - *"What should I call
+your folder? Your business name is the usual answer."* - then create the parent and bring
+the system down into it from the address settled in Step 5.
 
 Say one line when it lands. Do not show them the output.
 
@@ -286,8 +316,13 @@ The moment the system is on the machine, this skill is finished.
 > Business Brain, and putting it to work - is the system's own setup, and it's better at
 > that than I am. Starting it now."
 
-Then point Claude at the new folder and run `setup-my-os` from inside it. If the student
-must re-open Claude on that folder first, tell them the one thing they will see:
+Then point Claude at the new folder and start `setup-my-os` from inside it **by saying
+what starts it, not by inventing a command for it.** It is a skill that fires on a
+phrase, and a made-up slash command or flag is a guess that fails in front of the
+student at the finish line. If you are handing off by telling them what to type, the
+words are: **set up my OS**.
+
+If they must re-open Claude on that folder first, tell them the one thing they will see:
 *"It'll ask whether you trust this folder. Click Trust - that's expected, and it only
 asks once."*
 
