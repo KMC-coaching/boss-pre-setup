@@ -150,10 +150,24 @@ Never install this through a package manager that wants a password.
 - **Windows:** `winget install --id GitHub.cli --silent --accept-package-agreements
   --accept-source-agreements`.
 
-**After any install on Windows, the new tool will not be findable until the environment
-is re-read.** Re-read it in the same session rather than telling them to close and reopen
-anything. This single detail is the most common reason a setup stalls with "it says it
-can't find it."
+### After installing, the tool is there and the machine still cannot find it
+
+This happens on every platform and it is the single most common reason a setup stalls
+with "it says it can't find it." Verified on a bare Mac on 2026-09-17: the download
+lands, the file is executable, and the shell still answers `command not found`.
+
+- **Mac and Linux:** `~/.local/bin` is **not** on the default PATH. Installing there and
+  then calling `gh` by name fails every time. For the rest of this install, call it by
+  its full path (`$HOME/.local/bin/gh`), and never assume a bare `gh` will resolve. Also
+  append that folder to their shell profile so it keeps working after today, but do not
+  depend on that having taken effect in the session you are already inside.
+- **Windows:** the environment is not re-read until a new session starts. Re-read it
+  yourself in the session you are in, rather than telling them to close and reopen
+  anything.
+
+Whatever you do, verify by running the tool and seeing a version number come back before
+you move on. A file existing on disk is not the same as the machine being able to run it,
+and that gap is precisely what this step exists to close.
 
 ## Step 4 - The three things only they can do
 
