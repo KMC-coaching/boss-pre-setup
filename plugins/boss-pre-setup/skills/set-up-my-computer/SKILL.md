@@ -144,9 +144,21 @@ one, it is the wrong path. There is always another way, and the one below is it.
 
 Never install this through a package manager that wants a password.
 
-- **Mac and Linux:** download the release archive for their processor family with `curl`,
-  unpack it, and place the single program file in `~/.local/bin/`, creating that folder
-  if needed. Make it runnable. Nothing leaves their home folder.
+- **Mac and Linux:** **resolve the download address from the releases API - never
+  construct it by hand.** There is no version-less "latest/download" file to guess at:
+  the real filename carries the version number *and* the extension differs by platform
+  (macOS ships `.zip`, Linux ships `.tar.gz`). A rehearsal on 2026-09-17 invented
+  `latest/download/gh_macOS_arm64.tar.gz`, which does not exist and 404s.
+
+  Ask the API which asset matches their platform and architecture, take the address it
+  gives back, then download, unpack, and place the single program file in
+  `~/.local/bin/`, creating that folder if needed. Make it runnable. Nothing leaves their
+  home folder.
+
+  If that lookup fails or is rate-limited, do not guess a URL. Say one line - *"The
+  download list is busy, trying again"* - wait a few seconds and retry it. Only if it
+  keeps failing, fall back to whichever package manager is already on the machine, and
+  never install one.
 - **Windows:** `winget install --id GitHub.cli --silent --accept-package-agreements
   --accept-source-agreements`.
 
