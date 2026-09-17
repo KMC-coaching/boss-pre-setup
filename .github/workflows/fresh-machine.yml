@@ -38,12 +38,19 @@ jobs:
 
       - name: Install the GitHub tool into an empty home, no admin
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -e
           FAKE="$RUNNER_TEMP/fakehome"
           mkdir -p "$FAKE/.local/bin"
           EXT=zip; [ "$OS" = linux ] && EXT=tar.gz
-          URL=$(curl -fsSL https://api.github.com/repos/cli/cli/releases/latest \
+          # Authenticate the lookup. Unauthenticated it is 60/hour per IP and the
+          # hosted runners share egress addresses, so this flakes on a green skill.
+          # The skill itself has to survive the unauthenticated case; that is its
+          # retry-and-fallback rule, not something this test should mask.
+          URL=$(curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" \
+            https://api.github.com/repos/cli/cli/releases/latest \
             | grep -o "\"browser_download_url\": *\"[^\"]*${OS}_${ARCH}\.${EXT}\"" \
             | head -1 | sed 's/.*"\(https[^"]*\)"$/\1/')
           [ -n "$URL" ] || { echo "::error::no release asset for ${OS}_${ARCH}.${EXT}"; exit 1; }
@@ -104,3 +111,17 @@ jobs:
           fi
           [ $FAIL -eq 0 ] && echo "clean: no sudo, no Homebrew, no password request"
           exit $FAIL
+
+      - name: The invented URL must stay dead (regression guard)
+        shell: bash
+        run: |
+          # A rehearsal invented releases/latest/download/gh_<os>_<arch>.<ext>.
+          # No such file exists - the real name carries the version. If this ever
+          # starts returning 200, the skill's "resolve, never construct" rule can
+          # be revisited. Until then, constructing the address is a 404.
+          for E in zip tar.gz; do
+            C=$(curl -s -o /dev/null -w '%{http_code}' -L \
+              "https://github.com/cli/cli/releases/latest/download/gh_${OS}_${ARCH}.$E")
+            echo "  gh_${OS}_${ARCH}.$E -> HTTP $C"
+            [ "$C" = "404" ] || { echo "::error::constructed URL unexpectedly resolved"; exit 1; }
+          done
