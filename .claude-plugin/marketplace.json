@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kmc",
+  "description": "Krista Mashore Coaching - the one-step installer that prepares a student's computer for their Authority Operating System.",
+  "owner": {
+    "name": "Krista Mashore Coaching"
+  },
+  "plugins": [
+    {
+      "name": "boss-setup",
+      "description": "Prepares this computer to install your Authority Operating System. Sets up what your Claude is allowed to do, puts the tools it needs in place, signs you in, and brings your system down onto your machine. Run it once, before anything else.",
+      "author": {
+        "name": "Krista Mashore Coaching"
+      },
+      "category": "productivity",
+      "source": "./plugins/boss-setup"
+    }
+  ]
+}
