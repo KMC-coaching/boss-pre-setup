@@ -1,24 +1,35 @@
 ---
 name: set-up-my-computer
-description: Prepares a brand-new student's computer to receive their Authority Operating System, before they have GitHub connected, before any files are on the machine, and without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, signs them in through their browser, confirms their access, brings their system down onto the machine, then hands off to the system's own setup. Use when the student says "set up my computer", "set me up", "get me started", "install my operating system", "set up my OS", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 1.0.0
+description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
+version: 1.7.0
 ---
 
-# Set Up My Computer (step one of two)
+# Set Up My Computer
 
 ## What this is, and where it stops
 
-This runs on a computer that has nothing on it yet. No system folder, no GitHub
-connection, no tools. It gets the machine ready and brings the system down, and then it
-**stops and hands off**.
+This runs on a computer that has nothing on it yet. No GitHub connection, no tools. Its
+entire job is to leave the machine **primed**: Git present, the GitHub tool present and
+runnable, and the student signed in to their own GitHub account.
 
-Everything after the system lands - personalizing it, building their Business Brain, the
-smoke test, schedules, the diagnostic - belongs to `setup-my-os`, which arrives inside
-the system itself. Do not do any of that here. Do not ask the questions it asks. The
-handoff in Step 7 is the end of your job.
+That is the whole scope. When the sign-in is confirmed, you are done.
 
-**If a system folder already exists on this machine, you are the wrong skill.** Say so in
-one line and run `setup-my-os` instead.
+**Their system does not arrive today, and you must not imply that it does.** It comes
+later, as a separate step, once they have been given access to it. Nothing in this skill
+downloads it, names a folder for it, checks whether they can reach it, or starts its
+setup. Do not go looking for it, do not ask what their business is called, and do not
+name the system's location or address to them.
+
+**Why this boundary is absolute:** at this moment they have no access to the system, and
+that is deliberate. Checking for it would fail, and the failure would look to them like
+something they did wrong - a missed invitation, a wrong account - when in fact nothing is
+wrong at all. Sending a nervous student hunting through her spam folder for an email that
+does not exist yet is the worst outcome this skill can produce. There is nothing to
+verify here. Do not verify it.
+
+**If a system folder already exists on this machine,** they are further along than this
+skill. Say so in one line and stop; their system has its own setup and it is better at
+that than you are.
 
 ## The two rules that matter more than the steps
 
@@ -26,8 +37,9 @@ one line and run `setup-my-os` instead.
 
 If you are about to say "open your terminal", "paste this", "run this command", or
 "create this folder", stop. That sentence is the failure this skill exists to remove. You
-have their computer; use it. The only things they do by hand are the three in Step 4,
-because no software on earth can do those for them.
+have their computer; use it. The only things they do by hand are in Step 4 - the sign-in,
+their two-factor codes, and creating a GitHub account if they do not have one - because
+no software on earth can do those for them.
 
 ### 2. Their words, not yours
 
@@ -36,7 +48,7 @@ command line, PATH, package manager, Homebrew, sudo, admin rights, token, scope,
 binary, environment variable.
 
 Their words are: **your system**, **your folder**, **your backup**, **the sign-in**,
-**the tool that brings your system down**.
+**the tool your system will come through**.
 
 "Command" is allowed, because they will see that word in the approval box and pretending
 it isn't there helps nobody.
@@ -92,8 +104,8 @@ stupid.
   always be an available answer, and when she says it, that is full permission. Take it
   and move on.
 
-The only things that are genuinely hers: her business name, her own account and password,
-which email her invitation went to, and anything irreversible. Everything else is yours.
+The only things that are genuinely hers: her own account and password, which GitHub
+account she wants her system on, and anything irreversible. Everything else is yours.
 
 ### 5. The things that confuse people here, and what to say
 
@@ -139,8 +151,9 @@ the same words again.
 
 ## Step 0 - Say what is about to happen
 
-> "Hi. I'm getting your computer ready for your operating system. Fifteen to twenty
-> minutes, and I do nearly all of it.
+> "Hi. I'm getting your computer ready. Ten to fifteen minutes, and I do nearly all of
+> it. When we're done your machine is set up and ready to go, so that when your system
+> comes, everything is already in place for it.
 >
 > Two things so nothing surprises you. You'll see a lot scroll past, and sometimes the
 > word **error**. That's normal, that's me finding something and fixing it. And a box
@@ -176,10 +189,17 @@ open, including this one and the system folder that does not exist yet:
 
 **Copy it before you touch it, then merge, never overwrite.** If the file exists:
 
-1. **Take a copy first** - `settings.json.bak` beside it. This is the one irreversible
-   thing in the whole skill, and a copy costs nothing. Students who have used Claude
-   before may have hooks, connectors and permissions in there that took them a long time
-   to get right, and that no one can reconstruct for them.
+1. **Take a copy first** - `settings.json.bak` beside it, **but only if that copy does
+   not already exist.** This is the one irreversible thing in the whole skill, and a copy
+   costs nothing. Students who have used Claude before may have hooks, connectors and
+   permissions in there that took them a long time to get right, and that no one can
+   reconstruct for them.
+
+   The "only if it does not already exist" is the whole point, not a detail. This skill
+   is built to be re-run after she steps away, and a backup taken unconditionally on a
+   second run copies the file you already modified over the only untouched copy of her
+   original settings. The safety net silently becomes a second copy of the change. Check
+   for the file; if it is there, leave it exactly as it is.
 2. Read it, add only the entries below that are missing, and write it back with
    everything else untouched.
 3. Say plainly that their existing settings were kept and a copy was made.
@@ -241,7 +261,7 @@ Everything downstream branches off this. Nothing downstream may assume Mac.
 ## Step 3 - Put the missing tools in place, without admin rights
 
 Only install what Step 2 said was missing. Say one plain line before each
-(*"Putting the tool in place that brings your system down - about a minute."*).
+(*"Putting the tool in place that your system will come through - about a minute."*).
 
 **Nothing here may need their computer password.** If a path you are considering needs
 one, it is the wrong path. There is always another way, and the one below is it.
@@ -298,14 +318,24 @@ Whatever you do, verify by running the tool and seeing a version number come bac
 you move on. A file existing on disk is not the same as the machine being able to run it,
 and that gap is precisely what this step exists to close.
 
-## Step 4 - The three things only they can do
+## Step 4 - The two things only they can do
 
 These are the only human steps in the entire install. Do not attempt them yourself, and
 do not apologise for them - they exist because they are theirs.
 
+**Before anything else here, ask whether they have a GitHub account.** One plain
+question: *"Do you already have a GitHub account?"* If the answer is no, or "I don't
+know", go to Step 4a and come back. Do not start the sign-in first and discover it
+halfway through - a student staring at a sign-in box for an account that does not exist
+will assume she has done something wrong.
+
+**Expect the answer to be no.** Most people in this programme have never had a reason to
+use GitHub. That is completely normal and you should say so before she has a chance to
+feel behind: *"Most people here don't - it takes a couple of minutes to make one."*
+
 1. **Sign in to GitHub.** Do not improvise this command; it is the one step that is
-   awkward to retry, and a wrong scope here fails later at the clone with an error that
-   looks like a permissions problem instead of a sign-in problem.
+   awkward to retry, and a wrong scope here fails later with an error that looks like a
+   permissions problem instead of a sign-in problem.
 
    **First check whether they are already signed in.** `gh auth status`. Many students
    are, from something else. If they are signed in but missing scopes, top them up with
@@ -317,24 +347,47 @@ do not apologise for them - they exist because they are theirs.
    in their browser. Run in the foreground it looks frozen and eventually times out. Run
    in the background it works exactly as intended.
 
+   Write the output to a fresh temporary file, not a fixed path. A live sign-in code sits
+   in this file; a predictable name in a world-readable folder collides between runs and
+   between accounts on a shared machine.
+
    ```
+   SIGNIN=$(mktemp -t boss-signin)
    gh auth login --hostname github.com --git-protocol https --web \
-     --scopes "repo,read:org,gist,workflow" < /dev/null > /tmp/boss-signin.txt 2>&1 &
+     --scopes "repo,read:org,gist,workflow" < /dev/null > "$SIGNIN" 2>&1 &
    ```
 
-   Within a second or two that file contains, verbatim:
+   Within a second or two that file holds the code and the address. **Do not pattern-match
+   on the exact wording.** It has already changed once and will change again: gh 2.101.0
+   (verified 2026-09-17) writes
 
    ```
-   ! First copy your one-time code: XXXX-XXXX
+
+   ! One-time code (XXXX-XXXX) copied to clipboard
    Open this URL to continue in your web browser: https://github.com/login/device
    ```
 
-   Read the code out of that file and **give it to them with the address, in one message**:
+   where an earlier version wrote `! First copy your one-time code: XXXX-XXXX`. Note the
+   leading blank line, and the code in parentheses rather than after a colon. Anything
+   keyed to one of those two phrasings returns nothing on the other, and it fails at the
+   one step where she is the only person who can act.
+
+   **Find the code by its shape, not its label:** the sole `XXXX-XXXX` group of four
+   characters, a hyphen, four characters. If you cannot find one, read the file back and
+   look at what is actually there rather than guessing or re-running.
+
+   Read the code out and **give it to them with the address, in one message**:
 
    > "Go to **github.com/login/device** and type in this code: **XXXX-XXXX**
    >
    > Sign in if it asks, approve on your phone if it asks, and come back here. I'll be
    > watching for it - you don't need to tell me when you're done."
+
+   **Current versions also copy the code to her clipboard.** That is usually a help - she
+   can paste instead of type - but it silently replaced whatever she had copied. Say it in
+   half a sentence if it fits naturally (*"it's on your clipboard too, so you can just
+   paste it"*) and never make it a lecture. Do not promise the paste works: you cannot see
+   her clipboard, and the older version did not set it.
 
    Say the address and the code and nothing else. Do not paste the raw output at them, do
    not explain what a one-time code is, and never ask them to run the command themselves.
@@ -363,97 +416,127 @@ do not apologise for them - they exist because they are theirs.
    Then tell her the old code is dead and not to use it. A student holding two codes will
    try the wrong one, and it will look like the system is broken when it is only confused.
 
-   `repo` is the one that matters - their system is private, and without it the clone in
-   Step 6 fails. `read:org` and `gist` are the documented minimum alongside it; `workflow`
-   saves a second sign-in later. Remember: after a home-folder install, `gh` is not on
-   PATH, so call it by its full path.
+   `repo` is the one that matters - what they will be given access to later is private,
+   and without that scope it will not work when it arrives. `read:org` and `gist` are the
+   documented minimum alongside it; `workflow` saves a second sign-in later. Remember:
+   after a home-folder install, `gh` is not on PATH, so call it by its full path.
 
    Tell them what is about to happen before it happens: *"A browser tab is opening. Sign
    in to your GitHub account, and approve it on your phone if it asks. Come back here
    when it says you're done."* Then wait. Do not run anything else while that tab is open.
 
-   **Then run `gh auth setup-git`.** This lets the clone in Step 6 authenticate as them.
-   Skipping it is a common cause of the clone failing right after a sign-in that plainly
-   worked.
+   **Then run `gh auth setup-git`.** This is what lets their machine act as them on GitHub
+   later, and it costs nothing now. Skipping it is a common cause of a later step failing
+   right after a sign-in that plainly worked.
 
-   **Confirm it landed** with `gh auth status` and check the account name that comes back
-   is the one they expect, before moving on. If they have more than one GitHub account,
-   this is where the wrong one gets caught - and Step 5 is where it otherwise shows up as
-   a confusing "you don't have access" ten minutes later.
-2. **Accept the invitation to their system.** They were sent one by email. If the access
-   check in Step 5 fails, this is almost always why. Tell them to look for it, including
-   in spam.
-3. **Two-factor codes**, whenever their phone asks.
+   **Then confirm which account they landed on, out loud.** Run `gh auth status`, read the
+   username back, and ask them to confirm it:
 
-If they do not have a GitHub account at all, walk them through creating one in the
-browser, then come back. Never create an account on their behalf and never handle their
-password.
+   > "You're signed in as **their-username**. Is that the account you want your system on?"
 
-## Step 5 - Confirm they can actually reach their system
+   This matters more here than it looks. Plenty of people have two GitHub accounts - an
+   old personal one and the one they actually use - and the browser signs in as whichever
+   was already logged in. Nothing later in this skill can catch a wrong account, so this
+   question is the only chance to catch it while it is still free to fix. If it is the
+   wrong one, sign out and run the sign-in again rather than carrying on.
+2. **Two-factor codes**, whenever their phone asks.
 
-**Know which system you are looking for before you look.** There are two, and they are
-not interchangeable:
+### Step 4a - If they do not have a GitHub account yet
 
-| Who they are | Their system |
-|---|---|
-| Real estate agent, or lender (the default) | `Krista-Mashore-Coaching/Agent-Authority-Operating-System` |
-| Any other professional or business owner | `Krista-Mashore-Coaching/Authority-Operating-System` |
+This is the most likely branch in the whole skill, and the one where a nervous person is
+most likely to quietly give up. Treat it as a normal part of the path, not an exception.
 
-If it is not obvious which they are, ask one plain question - *"Are you a real estate
-agent, or something else?"* - and route on the answer. **Never invent a name and never
-guess at one.** A rehearsal on 2026-09-17 made up a repository that does not exist and
-would have failed at the last step, after the student had done all the work.
+**This is the one part where she types a lot, and you should say so up front.** Everything
+else in this skill was you doing the work. Signing up is her typing an email, a password,
+a username, and a code from her inbox. If you do not warn her, the sudden shift from
+"I'll handle it" to "now type all this" feels like something went wrong:
 
-Confirm the account they just signed in as can actually see that system before trying to
-bring anything down.
+> "This bit's all you, I'm afraid - it's your account, so it has to be your typing. Four
+> boxes and a code from your email, about two minutes. I'll stay right here and tell you
+> what each one wants."
 
-Check that their signed-in account can see the system they were given access to, before
-trying to bring anything down. A failure here is one of exactly two things and you should
-say both:
+Send her to **https://github.com/signup** and walk her through it one field at a time, at
+her pace. Do not paste a list of all four steps at once.
 
-- The invitation has not been accepted yet - check email, including spam.
-- They signed in as a different GitHub account than the one they were invited on.
+**Never do any of this for her.** Do not open the page and fill it in, do not choose or
+type her password, do not enter her email, and do not complete the puzzle. It is her
+account and her credentials, and this is a hard line, not a preference.
 
-Do not guess which. Tell them both and how to check each. Do not send them to anyone by
-email. If it stays stuck, the routes are office hours, the group call, or the Facebook
-group - screenshot first and hand the screenshot back here so this can be fixed in the
-session.
+What to tell her, in order, each one *before* she hits it:
 
-## Step 6 - Bring their system down onto the machine
+- **Email.** Recommend the address she will still have in five years - a personal one, or
+  her own business domain. A brokerage address stops working the day she changes
+  brokerages, and this account outlives that. State it as a recommendation and take
+  whatever she picks.
+- **Password.** She makes it up, she keeps it. Say plainly, once and without drama:
+  *"Don't type it here - I don't need it and I shouldn't see it."* A nervous person's
+  instinct is to show you everything she is doing. If she pastes it into the chat anyway,
+  do not repeat it back, do not store it, and tell her calmly to change it.
+- **Username.** This is the one that matters later, because it is what goes on the form at
+  the end and it is how her access gets set up. Recommend her name or her business name,
+  something she would be happy to have seen. It is awkward to change afterwards. If she
+  asks you to pick, pick one from her name and move on.
+- **The email code.** GitHub sends a code to the address she just used. She switches to
+  her inbox, gets it, comes back. Tell her it is coming *before* she goes looking, and
+  tell her to check spam if it has not shown up in a minute. This is a common place to
+  get lost, because leaving the page feels like abandoning the setup. It is not, and say
+  so.
+- **The puzzle.** GitHub may ask her to solve a small visual or audio puzzle to prove she
+  is a person. **You cannot do this one and must not try.** Warn her it is coming so it
+  does not read as a failure, tell her there is an audio option if the pictures are hard
+  to make out, and tell her plainly that getting it wrong costs nothing - it just gives
+  her another.
+- **Two-factor.** GitHub will very likely ask her to set up a second security step, either
+  straight away or shortly after. This needs her phone. If her phone is not with her, say
+  so now rather than when she is halfway in: it is worth pausing two minutes to go and get
+  it, and nothing done so far is lost by waiting.
 
-**The destination is not yours to choose.** `setup-my-os` takes over in Step 7 and it
-expects the system in a specific place under a specific name. Put it anywhere else and
-the handoff lands in a folder the next skill cannot find.
+When the account exists, come straight back and run the sign-in. She is already signed in
+to GitHub in her browser at that point, so the sign-in usually goes through in seconds.
 
-- Parent folder: `~/Sites/` on Mac and Linux, `Sites\` under their user folder on Windows
-- Folder name: `BOSS-OS-<business-name>`, lowercased and hyphenated
-- If that folder already exists, append `-2`, then `-3`. Do not ask which they prefer
+**One thing to watch.** If she already had a different GitHub account logged in to that
+browser, the sign-in may bind to the old one rather than the new. That is exactly what the
+username confirmation at the end of the sign-in is for - read it back and make sure it is
+the account she just created.
 
-Ask for the business name in plain words if it has not come up - *"What should I call
-your folder? Your business name is the usual answer."* - then create the parent and bring
-the system down into it from the address settled in Step 5.
+## Step 5 - Hand them their username and the form, and stop
 
-Say one line when it lands. Do not show them the output.
+The machine is primed. There is one thing left, and it is the thing that gets their
+system to them: **their GitHub username has to reach us, so they can be given access.**
+Without it nothing else can happen, so this is not a footnote at the end - it is the
+point of the whole session.
 
-## Step 7 - Hand off, and stop
+Read the username back off `gh auth status` rather than asking them for it. They have
+just confirmed it in Step 4, they may not remember it, and a typo here is what stalls
+their access for days.
 
-The moment the system is on the machine, this skill is finished.
+> "You're all set - your computer's ready.
+>
+> One last thing, and it's the important one. Your GitHub username is:
+>
+> **their-username**
+>
+> Fill that into this form so we can get your system over to you:
+>
+> https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9
+>
+> That's everything. Once that's in, your system comes next and I'll take it from there."
 
-> "Your system is on your computer. Everything from here - making it yours, building your
-> Business Brain, and putting it to work - is the system's own setup, and it's better at
-> that than I am. Starting it now."
+Three rules for this message:
 
-Then point Claude at the new folder and start `setup-my-os` from inside it **by saying
-what starts it, not by inventing a command for it.** It is a skill that fires on a
-phrase, and a made-up slash command or flag is a guess that fails in front of the
-student at the finish line. If you are handing off by telling them what to type, the
-words are: **set up my OS**.
+- **Give them the username. Do not ask for it.** They are being asked to type it into a
+  form; your job is to make sure the thing they type is right.
+- **Give the address as a plain link and do not open it for them.** It is their form to
+  fill in, in their own browser, with their own details. Never fill it in on their behalf
+  and never enter anything of theirs into it.
+- **Do not put a date on what happens next.** You do not know when their access lands.
+  "Your system comes next" is true. "In a few days" is a guess, and a guess here turns
+  into a support question when it slips.
 
-If they must re-open Claude on that folder first, tell them the one thing they will see:
-*"It'll ask whether you trust this folder. Click Trust - that's expected, and it only
-asks once."*
-
-Do not re-ask anything `setup-my-os` asks. Do not personalize anything. Stop here.
+Then stop. Do not go looking for their system, do not offer to install anything else, and
+do not start another setup. If they ask what happens now, the honest answer is that their
+access gets set up on our side once the form is in, and everything after that has its own
+walkthrough when it arrives.
 
 ---
 
@@ -467,8 +550,8 @@ and asking is how a person who was doing fine starts to feel like they lost some
 Look at the machine and tell her:
 
 - Are the tools there and do they run?
-- Is she signed in?
-- Is the system folder there?
+- Is she signed in, and as which account?
+- Has she been given her username and the form?
 
 Then give her the state in three lines, marking what is done and what is left, and say
 plainly how long the rest takes. Lead with what is finished, because the part she is most
@@ -497,4 +580,15 @@ time, in plain words.
 - Never write `Bash(*)` into their settings.
 - Never overwrite an existing settings file instead of merging into it.
 - Never give out an email address for support, and never suggest emailing anyone.
-- Never continue past Step 7 into work that belongs to `setup-my-os`.
+- Never create a GitHub account for them, type their password or email into a signup
+  form, or complete a human-verification puzzle on their behalf.
+- Never take a backup over a backup that already exists.
+- Never go looking for their operating system, check whether they can reach it, download
+  it, name a folder for it, or say where it lives. They have no access to it yet, by
+  design, and a failed check reads to them as their own mistake.
+- Never ask what their business is called in order to name a folder or a system. Nothing
+  here needs it. (Suggesting it as a shape for their own GitHub username is fine - that is
+  theirs, and they volunteer it or they don't.)
+- Never put a date on when their system arrives.
+- Never fill in the form for them, or enter any of their details into it.
+- Never continue past Step 5 into work that belongs to their system's own setup.
