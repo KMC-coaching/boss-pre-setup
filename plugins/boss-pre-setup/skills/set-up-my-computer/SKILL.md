@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 1.8.0
+version: 1.9.0
 ---
 
 # Set Up My Computer
@@ -346,18 +346,47 @@ Say it when you ask the question, not after she answers:
 > one, and not the office's. Your system gets connected to whichever account you use, so
 > it needs to be one only you can get into."
 
-**Give her the reason that actually affects her, not the policy version.** Her system gets
-attached to that one account. If somebody else can get into it, they can reach her
-system - and in time, her business and her client information. And if the account is not
-really hers, she is one forgotten password or one falling-out away from being locked out
-of her own system, with nobody able to fix it for her.
+**There are four separate reasons, and they fail in different directions.** Know all four,
+because which one applies depends on who she is sharing with, and because a student who
+pushes back deserves a real answer rather than a repeated rule.
+
+**1. If the other person is also in this programme, the two systems collide.** This is the
+concrete one. Her system keeps a private backup in whichever account she signs in with,
+and that backup is her whole vault - her brand and voice files, her contacts, her
+pipeline, her buyers and past clients, her commissions. Two people on one account means
+both backups land in the same place, each of them able to read and change the other's, and
+both machines pushing into the same account. Her numbers and her clients become visible to
+the other person, and theirs to her. Neither of them chose that.
+
+**2. If the other person is not in the programme, it is a straight security problem for
+her.** Whoever else has that login can reach her system, and in time her client records
+and her financials. A spouse, an assistant, or the person who normally fixes her computer
+is still somebody who did not agree to hold her clients' information.
+
+**3. It is a security problem on our side too.** Access is issued to her, personally. A
+shared login hands the whole system to somebody who was never given it. She does not need
+a lecture about this, but you should not pretend it is only about her - if she asks
+directly, say it plainly and without accusation: her access is hers, and it is not
+transferable.
+
+**4. If the account is not really hers, she can be locked out of her own system.** One
+forgotten password, one falling-out, one assistant who leaves, and the system she has been
+building on is behind someone else's login with nobody able to fix it for her.
+
+**Which of these to say:** lead with 1 and 2, because they are hers and they are concrete.
+Add 4 if she is still weighing it. Reach for 3 only if she asks why it matters to us, and
+say it once, flatly. Never open with 3 - leading with our interests reads as distrust of
+her, and she has done nothing to earn that.
 
 **The four you will actually hit**, and none of them qualify:
 
 - **"My husband and I share everything."** Common, and warm, and still no. Two people, two
-  accounts. Hers is hers.
+  accounts. **Ask whether he is in the programme too** - if he is, this is reason 1 and it
+  is the worst version: their two systems would sit on top of each other, each able to see
+  and change the other's clients and numbers. Both of them need their own.
 - **"My assistant set it up"** or *"my TC has the login."* That is their account, not
-  hers, and access follows the account.
+  hers, and access follows the account. Her assistant would be able to read every client
+  record and every commission in her system.
 - **"My son made me one years ago."** If he still has the password, it is not hers. She
   can take it over by changing the password and the recovery email, or start a fresh one -
   fresh is usually simpler, and cheaper than finding out later.
@@ -601,10 +630,13 @@ It is where her system will live and how it gets to her, the way a file-sharing 
 works. She will barely touch it after today. Do not explain version control.
 
 **"Can my husband and I just use one account?"** / **"Can I use the office one?"**
-No, and this is worth the thirty seconds. Her system attaches to whichever account she
-uses, so it has to be one only she can get into. A shared login means someone else can
-reach her system and her business, and if that person changes the password she is locked
-out of her own system. Two people, two accounts. See the rule in Step 4.
+No, and this is worth the thirty seconds. Her system keeps a private backup in whichever
+account she signs in with, and that backup holds her clients, her pipeline and her
+commissions. Sharing means whoever else has that login can read all of it. **If the other
+person is also in the programme it is worse** - both systems land in the same account,
+each able to change the other's, so her numbers and theirs get tangled together. And if
+the login is not really hers, one changed password locks her out of her own system. Two
+people, two accounts. Full reasoning in Step 4.
 
 **"My son set one up for me years ago - can I use that?"**
 Only if he no longer has the password. If he does, it is his account with her name on it.
