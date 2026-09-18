@@ -586,7 +586,9 @@ time, in plain words.
 - Never go looking for their operating system, check whether they can reach it, download
   it, name a folder for it, or say where it lives. They have no access to it yet, by
   design, and a failed check reads to them as their own mistake.
-- Never ask what their business is called. Nothing here needs it.
+- Never ask what their business is called in order to name a folder or a system. Nothing
+  here needs it. (Suggesting it as a shape for their own GitHub username is fine - that is
+  theirs, and they volunteer it or they don't.)
 - Never put a date on when their system arrives.
 - Never fill in the form for them, or enter any of their details into it.
 - Never continue past Step 5 into work that belongs to their system's own setup.
