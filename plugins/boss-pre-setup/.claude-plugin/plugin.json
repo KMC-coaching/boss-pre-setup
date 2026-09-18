@@ -1,7 +1,7 @@
 {
   "name": "boss-pre-setup",
   "description": "STEP ONE OF TWO - this gets your computer ready. It does NOT install your operating system; it hands off to that at the end.\n\nTo activate, type in this command: set up my computer\n\nWhat it does: sets up what your Claude is allowed to do on this computer so it stops asking you about every step; checks what is already installed; puts Git and the GitHub tool in place without ever needing your computer password; walks you through the one sign-in only you can do; confirms you can reach your system; brings it down onto your machine; then starts the system's own setup, which does the personalizing.\n\nYou will never be asked to open a terminal or type a command. Takes about 15-20 minutes.",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": {
     "name": "Krista Mashore Coaching"
   }

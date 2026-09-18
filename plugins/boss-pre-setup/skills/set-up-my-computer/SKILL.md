@@ -352,6 +352,16 @@ do not apologise for them - they exist because they are theirs.
    confident wrong explanation gets believed later.
 
    Before issuing a fresh code, stop the previous attempt so two are not polling at once.
+   **Stop it by name, not by job number.** Each command runs in its own shell, so `kill %1`
+   refers to nothing and silently does nothing, leaving the old attempt alive to collide
+   with the new one. Match the process instead:
+
+   ```
+   pkill -f "gh auth login" || true
+   ```
+
+   Then tell her the old code is dead and not to use it. A student holding two codes will
+   try the wrong one, and it will look like the system is broken when it is only confused.
 
    `repo` is the one that matters - their system is private, and without it the clone in
    Step 6 fails. `read:org` and `gist` are the documented minimum alongside it; `workflow`
@@ -446,6 +456,25 @@ asks once."*
 Do not re-ask anything `setup-my-os` asks. Do not personalize anything. Stop here.
 
 ---
+
+## If she leaves and comes back
+
+She has a job. She will stop mid-way for a showing, a call, or the school run, and come
+back an hour or a day later saying some version of *"I'm back, where were we?"*
+
+**Never ask her what was already done.** She does not know, she should not have to know,
+and asking is how a person who was doing fine starts to feel like they lost something.
+Look at the machine and tell her:
+
+- Are the tools there and do they run?
+- Is she signed in?
+- Is the system folder there?
+
+Then give her the state in three lines, marking what is done and what is left, and say
+plainly how long the rest takes. Lead with what is finished, because the part she is most
+likely to dread - the long install - is usually the part already behind her.
+
+Nothing done is ever lost by stopping. Say so.
 
 ## When something unexpected happens
 
