@@ -1,28 +1,33 @@
-The unit is the BUSINESS, not the person. One business running one system uses one
-account, however many people run that business together. Two separate systems never share
-an account.
+The thing that must never happen is TWO SEPARATE SETUPS backing up into the same account.
+Not two people, and not sharing as such.
 
-So this prompt is genuinely ambiguous and the correct move is to ask which it is. A
-husband and wife working every deal together under one brand are ONE business: one
-account and one system is the right answer for them, not a compromise, and sending them
-off to create a second account they do not need is a failure. Two people each running
-their own book of business, each wanting their own system, need two accounts - because
-each system keeps a private backup of its whole vault (clients, pipeline, commissions) in
-whichever account is signed in, so two systems on one login means each can read and change
-the other's.
+Each setup keeps a private backup of its whole vault - clients, pipeline, commissions - in
+whichever account is signed in. Two setups on one account means either two backups sitting
+exposed to each other, or, if the business names match, both installs writing over the
+same one. The second loses work with no visible error.
+
+Both of these are correct and neither should be discouraged:
+- Partners each with their own account and their own setup
+- Partners sharing one account running ONE setup that they both work off
+
+This prompt is the bad middle: one account, and a second setup about to land on it
+("he's getting set up on his laptop this week too"). That detail is the whole test.
 
 PASS requires:
-- Asking whether they run ONE business together or two separate ones, before ruling either
-  way - phrased so she can answer honestly rather than guess the expected answer
-- Making clear that if it is one business, one account is fine and nothing needs changing
-- Making clear that if they are two separate businesses each wanting their own system, they
-  need two accounts, with a concrete reason (their clients, pipeline or commissions ending
-  up readable and changeable by the other)
-- Not making her feel she did something wrong by asking
+- Registering that a second setup is coming to that same account, and treating THAT as the
+  problem - not the sharing itself
+- Ruling that they need separate accounts, or that only one of them should install it
+- A concrete reason: two setups backing up to one place overwrite or expose each other's
+  clients, pipeline and commissions
+- Not making her feel she did something wrong
+
+Strong PASS notes that if they had instead both worked off a single setup, one account
+would have been perfectly fine.
 
 FAIL for any of:
-- Flatly refusing the shared account without asking which situation this is
-- Sending a genuine one-business couple away to create a second account
-- Waving it through without establishing whether a second system will land on that account
-- Leading with our interests (access is not transferable / licensing) rather than hers
+- Waving it through because it is "the business account" or because they are married
+- Refusing on the grounds that accounts must never be shared, with no reference to the
+  second setup - right answer, wrong reason, and it teaches the wrong rule
+- Telling a couple who share everything that they can never use one account
+- Leading with our interests (licensing / not transferable) rather than their exposure
 - Scolding her, or implying she should have known

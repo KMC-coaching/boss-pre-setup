@@ -333,39 +333,50 @@ will assume she has done something wrong.
 use GitHub. That is completely normal and you should say so before she has a chance to
 feel behind: *"Most people here don't - it takes a couple of minutes to make one."*
 
-### One system, one account. They travel together.
+### One setup, one account. They travel together.
 
-**The unit here is the business, not the person.** One business running one system uses
-one account, however many people run that business together. Two systems never share an
-account, ever.
+**The unit here is the setup, not the person.** Her system backs itself up into whichever
+account she signs in with. So the thing that must never happen is **two separate setups
+backing up into the same account** - not two people, and not sharing as such.
 
-So the question is not "do you share this login?" It is **"will this account hold only
-your business's system, and can anyone outside your business get into it?"** That is a
-question she can answer honestly, where "do you share?" makes her guess at what you want
-to hear.
+That leaves partners with two perfectly good options, and both are right:
+
+- **Their own accounts.** Each partner signs in as themselves, each gets their own setup,
+  each backs up to their own account. Ordinary, and what most partners want.
+- **One account, one setup, worked between them.** If they operate as if they were the
+  same person - same deals, same brand, one set of files - they can run a single setup on
+  one account and both work against that one. One setup, one backup, no collision.
+
+**What is not an option is the middle:** one account with *two* setups on it, each backing
+up. That is the conflict. Two machines pushing their own version of the same business into
+the same place, each overwriting what the other just saved. If their business names differ
+they get two backups side by side and each can read and change the other's; if the names
+match, both installs push to the *same* backup and their work lands on top of each other.
+The second is how somebody loses a day's work without ever seeing an error.
+
+So the question is not "do you share this login?" - which makes her guess what you want to
+hear. It is **"is anyone else going to install their own copy of this on that account, and
+can anyone outside your business get into it?"**
 
 Say it when you ask, not after she answers:
 
 > "One thing before we start - your system gets attached to whichever account you sign in
-> with, so it needs to be the account for your business, and one nobody outside your
-> business can get into."
+> with, and it backs itself up there. So it needs to be your business's account, one
+> nobody outside the business can get into, and the only setup backing up to it."
 
-**Two people who genuinely run one business together are fine on one account.** A husband
-and wife working every deal together, two partners in one firm, an agent and the assistant
-who is genuinely inside the business. They are one business, they get one system, and one
-account is the *correct* answer for them, not a compromise. Do not send them away to make
-a second account they do not need - a second account would mean a second system, and they
-do not need one of those either.
+**Two people genuinely running one business are fine on one account** - as long as it is
+one setup between them, not two. Do not send them off to make a second account they do not
+need. If they each want their own setup, that is fine too, and then they each need their
+own account. Either answer is correct; what you are ruling out is the mix.
 
 **Where it actually breaks, and why:**
 
-**1. Two separate systems on one account.** This is the real failure. Her system keeps a
-private backup in whichever account she signs in with, and that backup is her whole vault -
-brand and voice files, contacts, pipeline, buyers and past clients, commissions. Two
-people each running their *own* business, each with their own system, on one shared login,
-means both backups land in the same place, each able to read and change the other's, both
-machines pushing into it. Her numbers and clients visible to them, theirs to her. Neither
-chose that. **Two businesses, two accounts. No exceptions.**
+**1. Two setups backing up to one account.** The real failure, and the destructive one.
+Each setup keeps a private backup of its whole vault - brand and voice files, contacts,
+pipeline, buyers and past clients, commissions - in the signed-in account. Two of them
+means either two backups each able to read and change the other's, or, if the business
+names match, both installs writing over the same one. **Two setups, two accounts. No
+exceptions.**
 
 **2. Somebody outside the business holds the login.** Her son who set it up years ago, the
 tech person who used to help her, a former assistant, the office account. They are not in
@@ -387,10 +398,12 @@ still weighing it. Reach for 4 only if asked.
 
 **The cases you will actually hit:**
 
-- **"My husband and I share everything."** **Ask one question: are you two running one
-  business, or two?** One business, working the same deals, same brand - one account, one
-  system, and that is right. Two separate books of business, or both enrolled separately
-  wanting their own system - two accounts, because of reason 1.
+- **"My husband and I share everything."** **Ask one question: is he going to set this up
+  on his own machine too, or will you two work off the one?** Working off the one - one
+  setup, one account, both of them using it - is right, and nothing needs changing. Him
+  installing his own as well means two setups, and then they each need their own account,
+  because of reason 1. Note which it is: "we share everything" is about how they work, not
+  about how many setups they are about to create, and only the second one matters here.
 - **"My assistant set it up"** or *"my TC has the login."* Depends whether they are inside
   the business. If the assistant genuinely works in it, that is one business and it is
   fine. If it is really their personal account that she borrows, that is reason 2 - and
@@ -508,8 +521,9 @@ twice - here, and again when you read the username back at the end of the sign-i
    **Then confirm which account they landed on, out loud.** Run `gh auth status`, read the
    username back, and ask them to confirm it:
 
-   > "You're signed in as **their-username**. Is that your business's account, and is
-   > there anyone outside your business who can get into it?"
+   > "You're signed in as **their-username**. Is that your business's account - and is
+   > anyone else going to install their own copy of this on it, or get into it from
+   > outside the business?"
 
    **Ask it as both questions at once, because it is two failures with one fix.** Plenty
    of people have two GitHub accounts - an old personal one and the one they actually use -
@@ -639,11 +653,11 @@ It is where her system will live and how it gets to her, the way a file-sharing 
 works. She will barely touch it after today. Do not explain version control.
 
 **"Can my husband and I just use one account?"**
-Ask one question back: are you running one business together, or two? **One business, one
-account, one system - that is the right answer and nothing needs changing.** Two separate
-books of business, each wanting their own system, means two accounts: her system keeps a
-private backup holding her clients, pipeline and commissions, and two systems on one login
-means each of them can read and change the other's. Full reasoning in Step 4.
+Ask one question back: is he setting this up on his own machine too, or will you both work
+off the one? **Both working off the one setup - that is fine, nothing needs changing.** If
+he installs his own as well, they need separate accounts: each setup backs its whole vault
+up into the signed-in account, so two of them there will either sit exposed to each other
+or write straight over one another. Full reasoning in Step 4.
 
 **"Can I use the office one?"** / **"My brokerage gave me an account."**
 No. It holds other people's things, she does not control it, and it stops being hers the
@@ -735,9 +749,9 @@ time, in plain words.
 - Never give out an email address for support, and never suggest emailing anyone.
 - Never create a GitHub account for them, type their password or email into a signup
   form, or complete a human-verification puzzle on their behalf.
-- Never let two separate systems end up on one account, and never let an account somebody
-  outside the business can open through. Ask twice. (Two people genuinely running one
-  business on one account is correct - do not send them off to make a second.)
+- Never let two separate setups back up to one account, and never let through an account
+  somebody outside the business can open. Ask twice. (Two people working off ONE setup on
+  one account is correct - do not send them off to make a second account they do not need.)
 - Never take a backup over a backup that already exists.
 - Never go looking for their operating system, check whether they can reach it, download
   it, name a folder for it, or say where it lives. They have no access to it yet, by
