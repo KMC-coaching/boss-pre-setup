@@ -37,8 +37,9 @@ that than you are.
 
 If you are about to say "open your terminal", "paste this", "run this command", or
 "create this folder", stop. That sentence is the failure this skill exists to remove. You
-have their computer; use it. The only things they do by hand are the three in Step 4,
-because no software on earth can do those for them.
+have their computer; use it. The only things they do by hand are in Step 4 - the sign-in,
+their two-factor codes, and creating a GitHub account if they do not have one - because
+no software on earth can do those for them.
 
 ### 2. Their words, not yours
 
@@ -322,6 +323,16 @@ and that gap is precisely what this step exists to close.
 These are the only human steps in the entire install. Do not attempt them yourself, and
 do not apologise for them - they exist because they are theirs.
 
+**Before anything else here, ask whether they have a GitHub account.** One plain
+question: *"Do you already have a GitHub account?"* If the answer is no, or "I don't
+know", go to Step 4a and come back. Do not start the sign-in first and discover it
+halfway through - a student staring at a sign-in box for an account that does not exist
+will assume she has done something wrong.
+
+**Expect the answer to be no.** Most people in this programme have never had a reason to
+use GitHub. That is completely normal and you should say so before she has a chance to
+feel behind: *"Most people here don't - it takes a couple of minutes to make one."*
+
 1. **Sign in to GitHub.** Do not improvise this command; it is the one step that is
    awkward to retry, and a wrong scope here fails later with an error that looks like a
    permissions problem instead of a sign-in problem.
@@ -430,9 +441,63 @@ do not apologise for them - they exist because they are theirs.
    wrong one, sign out and run the sign-in again rather than carrying on.
 2. **Two-factor codes**, whenever their phone asks.
 
-If they do not have a GitHub account at all, walk them through creating one in the
-browser, then come back. Never create an account on their behalf and never handle their
-password.
+### Step 4a - If they do not have a GitHub account yet
+
+This is the most likely branch in the whole skill, and the one where a nervous person is
+most likely to quietly give up. Treat it as a normal part of the path, not an exception.
+
+**This is the one part where she types a lot, and you should say so up front.** Everything
+else in this skill was you doing the work. Signing up is her typing an email, a password,
+a username, and a code from her inbox. If you do not warn her, the sudden shift from
+"I'll handle it" to "now type all this" feels like something went wrong:
+
+> "This bit's all you, I'm afraid - it's your account, so it has to be your typing. Four
+> boxes and a code from your email, about two minutes. I'll stay right here and tell you
+> what each one wants."
+
+Send her to **https://github.com/signup** and walk her through it one field at a time, at
+her pace. Do not paste a list of all four steps at once.
+
+**Never do any of this for her.** Do not open the page and fill it in, do not choose or
+type her password, do not enter her email, and do not complete the puzzle. It is her
+account and her credentials, and this is a hard line, not a preference.
+
+What to tell her, in order, each one *before* she hits it:
+
+- **Email.** Recommend the address she will still have in five years - a personal one, or
+  her own business domain. A brokerage address stops working the day she changes
+  brokerages, and this account outlives that. State it as a recommendation and take
+  whatever she picks.
+- **Password.** She makes it up, she keeps it. Say plainly, once and without drama:
+  *"Don't type it here - I don't need it and I shouldn't see it."* A nervous person's
+  instinct is to show you everything she is doing. If she pastes it into the chat anyway,
+  do not repeat it back, do not store it, and tell her calmly to change it.
+- **Username.** This is the one that matters later, because it is what goes on the form at
+  the end and it is how her access gets set up. Recommend her name or her business name,
+  something she would be happy to have seen. It is awkward to change afterwards. If she
+  asks you to pick, pick one from her name and move on.
+- **The email code.** GitHub sends a code to the address she just used. She switches to
+  her inbox, gets it, comes back. Tell her it is coming *before* she goes looking, and
+  tell her to check spam if it has not shown up in a minute. This is a common place to
+  get lost, because leaving the page feels like abandoning the setup. It is not, and say
+  so.
+- **The puzzle.** GitHub may ask her to solve a small visual or audio puzzle to prove she
+  is a person. **You cannot do this one and must not try.** Warn her it is coming so it
+  does not read as a failure, tell her there is an audio option if the pictures are hard
+  to make out, and tell her plainly that getting it wrong costs nothing - it just gives
+  her another.
+- **Two-factor.** GitHub will very likely ask her to set up a second security step, either
+  straight away or shortly after. This needs her phone. If her phone is not with her, say
+  so now rather than when she is halfway in: it is worth pausing two minutes to go and get
+  it, and nothing done so far is lost by waiting.
+
+When the account exists, come straight back and run the sign-in. She is already signed in
+to GitHub in her browser at that point, so the sign-in usually goes through in seconds.
+
+**One thing to watch.** If she already had a different GitHub account logged in to that
+browser, the sign-in may bind to the old one rather than the new. That is exactly what the
+username confirmation at the end of the sign-in is for - read it back and make sure it is
+the account she just created.
 
 ## Step 5 - Hand them their username and the form, and stop
 
@@ -515,6 +580,8 @@ time, in plain words.
 - Never write `Bash(*)` into their settings.
 - Never overwrite an existing settings file instead of merging into it.
 - Never give out an email address for support, and never suggest emailing anyone.
+- Never create a GitHub account for them, type their password or email into a signup
+  form, or complete a human-verification puzzle on their behalf.
 - Never take a backup over a backup that already exists.
 - Never go looking for their operating system, check whether they can reach it, download
   it, name a folder for it, or say where it lives. They have no access to it yet, by
