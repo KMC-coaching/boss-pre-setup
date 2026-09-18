@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 1.7.0
+version: 1.8.0
 ---
 
 # Set Up My Computer
@@ -333,6 +333,45 @@ will assume she has done something wrong.
 use GitHub. That is completely normal and you should say so before she has a chance to
 feel behind: *"Most people here don't - it takes a couple of minutes to make one."*
 
+### It has to be her own account. Say this out loud, every time.
+
+**The account must belong to her and nobody else.** Not shared with a spouse, not the
+office account, not her assistant's, not one her son or her tech person set up and still
+has the password to. This is the single most consequential thing she can get wrong here,
+because it is invisible at the time and expensive to unpick later.
+
+Say it when you ask the question, not after she answers:
+
+> "One thing before we start - it needs to be your own account, just yours. Not a shared
+> one, and not the office's. Your system gets connected to whichever account you use, so
+> it needs to be one only you can get into."
+
+**Give her the reason that actually affects her, not the policy version.** Her system gets
+attached to that one account. If somebody else can get into it, they can reach her
+system - and in time, her business and her client information. And if the account is not
+really hers, she is one forgotten password or one falling-out away from being locked out
+of her own system, with nobody able to fix it for her.
+
+**The four you will actually hit**, and none of them qualify:
+
+- **"My husband and I share everything."** Common, and warm, and still no. Two people, two
+  accounts. Hers is hers.
+- **"My assistant set it up"** or *"my TC has the login."* That is their account, not
+  hers, and access follows the account.
+- **"My son made me one years ago."** If he still has the password, it is not hers. She
+  can take it over by changing the password and the recovery email, or start a fresh one -
+  fresh is usually simpler, and cheaper than finding out later.
+- **"The office has one"** / a brokerage-provided account. It goes when the brokerage
+  does, and she does not control it.
+
+**If it turns out to be shared, do not treat it as a problem she caused.** She had no way
+to know. Say it plainly and move: *"Ah - then let's make you your own, it takes two
+minutes and it saves a real headache later."* Then go to Step 4a.
+
+**You cannot detect this from the machine.** Nothing in `gh auth status` says whether two
+people know the password. Asking is the only check there is, which is why it is asked
+twice - here, and again when you read the username back at the end of the sign-in.
+
 1. **Sign in to GitHub.** Do not improvise this command; it is the one step that is
    awkward to retry, and a wrong scope here fails later with an error that looks like a
    permissions problem instead of a sign-in problem.
@@ -432,19 +471,30 @@ feel behind: *"Most people here don't - it takes a couple of minutes to make one
    **Then confirm which account they landed on, out loud.** Run `gh auth status`, read the
    username back, and ask them to confirm it:
 
-   > "You're signed in as **their-username**. Is that the account you want your system on?"
+   > "You're signed in as **their-username**. Is that your own account - just yours,
+   > nobody else has the login?"
 
-   This matters more here than it looks. Plenty of people have two GitHub accounts - an
-   old personal one and the one they actually use - and the browser signs in as whichever
-   was already logged in. Nothing later in this skill can catch a wrong account, so this
-   question is the only chance to catch it while it is still free to fix. If it is the
-   wrong one, sign out and run the sign-in again rather than carrying on.
+   **Ask it as both questions at once, because it is two failures with one fix.** Plenty
+   of people have two GitHub accounts - an old personal one and the one they actually use -
+   and the browser signs in as whichever was already logged in. And a shared account will
+   sail straight through the sign-in looking perfect.
+
+   Nothing later in this skill can catch either one. This question is the last chance to
+   catch them while it is still free to fix. If it is the wrong account or a shared one,
+   sign out and start over rather than carrying on - two minutes now against a locked-out
+   student later.
 2. **Two-factor codes**, whenever their phone asks.
 
 ### Step 4a - If they do not have a GitHub account yet
 
 This is the most likely branch in the whole skill, and the one where a nervous person is
 most likely to quietly give up. Treat it as a normal part of the path, not an exception.
+
+**The account she creates here is hers alone.** She picks the password, she keeps it, and
+nobody else gets it - not her assistant, not her husband, not the person who normally
+sorts out her computer. If someone else is sitting with her helping, that is fine, but the
+password is hers and she should be the one typing it. Say it once, plainly, while she is
+choosing it.
 
 **This is the one part where she types a lot, and you should say so up front.** Everything
 else in this skill was you doing the work. Signing up is her typing an email, a password,
@@ -540,6 +590,66 @@ walkthrough when it arrives.
 
 ---
 
+## If she asks
+
+These are the questions that actually come up. Answer in a line or two and get back to
+the work - do not read her the whole entry, and never volunteer these unprompted. If she
+has not asked, she is not worrying about it.
+
+**"What is GitHub? I've never heard of it."**
+It is where her system will live and how it gets to her, the way a file-sharing account
+works. She will barely touch it after today. Do not explain version control.
+
+**"Can my husband and I just use one account?"** / **"Can I use the office one?"**
+No, and this is worth the thirty seconds. Her system attaches to whichever account she
+uses, so it has to be one only she can get into. A shared login means someone else can
+reach her system and her business, and if that person changes the password she is locked
+out of her own system. Two people, two accounts. See the rule in Step 4.
+
+**"My son set one up for me years ago - can I use that?"**
+Only if he no longer has the password. If he does, it is his account with her name on it.
+Simplest fix is a fresh one, two minutes, and she owns it outright.
+
+**"Should I use my work email or my personal one?"**
+Whichever she will still have in five years. A brokerage address stops working the day she
+changes brokerages, and this account outlives that. Recommend, then take what she picks.
+
+**"Does this cost anything?"**
+No. The tools are free, the account is free, she will not be asked for a card, and nothing
+here signs her up for anything.
+
+**"Is this safe? What can you see?"**
+Everything installed goes in her own user folder, nothing touches her system settings, and
+she approves each step. Her password is never typed here and never seen - not by this, not
+by anyone. If she asks specifically what was installed, tell her plainly.
+
+**"Why does it keep saying error?"**
+That is normal and it is not her. It is the setup checking what is already there, and
+finding something missing is how it knows what to install.
+
+**"Do I have to do the two-factor thing?"**
+GitHub requires it, so yes. It needs her phone. If her phone is not with her, pause and go
+get it - nothing done so far is lost by waiting a couple of minutes.
+
+**"I have an account but I can't remember the password."**
+She resets it on GitHub in her browser, same as any other site. If the recovery email is
+also gone, a fresh account is faster than fighting it.
+
+**"Can I stop and come back later?"**
+Yes, and nothing done is lost. She picks up by saying the same words again, and the setup
+looks at the machine and carries on from wherever it got to.
+
+**"I filled in the form - now what?"**
+Nothing. That is genuinely the end of her part. Her access gets set up on our side, and
+her system comes after that with its own walkthrough. **Do not put a date on it.**
+
+**"Do I need to leave my computer on, or keep this open?"**
+No. She can close everything and shut down. Nothing is waiting on her machine.
+
+**"Do I need to do anything else to get ready?"**
+No. That is the whole point of today - the machine is ready, and the next part comes with
+its own instructions when it arrives.
+
 ## If she leaves and comes back
 
 She has a job. She will stop mid-way for a showing, a call, or the school run, and come
@@ -582,6 +692,9 @@ time, in plain words.
 - Never give out an email address for support, and never suggest emailing anyone.
 - Never create a GitHub account for them, type their password or email into a signup
   form, or complete a human-verification puzzle on their behalf.
+- Never let a shared, office, spouse's, assistant's, or someone-else-set-it-up account
+  through. Ask twice, and start a fresh one the moment the answer is anything but "just
+  mine".
 - Never take a backup over a backup that already exists.
 - Never go looking for their operating system, check whether they can reach it, download
   it, name a folder for it, or say where it lives. They have no access to it yet, by
