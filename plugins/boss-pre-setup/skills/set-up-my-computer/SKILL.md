@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 1.9.0
+version: 2.0.0
 ---
 
 # Set Up My Computer
@@ -333,69 +333,77 @@ will assume she has done something wrong.
 use GitHub. That is completely normal and you should say so before she has a chance to
 feel behind: *"Most people here don't - it takes a couple of minutes to make one."*
 
-### It has to be her own account. Say this out loud, every time.
+### One system, one account. They travel together.
 
-**The account must belong to her and nobody else.** Not shared with a spouse, not the
-office account, not her assistant's, not one her son or her tech person set up and still
-has the password to. This is the single most consequential thing she can get wrong here,
-because it is invisible at the time and expensive to unpick later.
+**The unit here is the business, not the person.** One business running one system uses
+one account, however many people run that business together. Two systems never share an
+account, ever.
 
-Say it when you ask the question, not after she answers:
+So the question is not "do you share this login?" It is **"will this account hold only
+your business's system, and can anyone outside your business get into it?"** That is a
+question she can answer honestly, where "do you share?" makes her guess at what you want
+to hear.
 
-> "One thing before we start - it needs to be your own account, just yours. Not a shared
-> one, and not the office's. Your system gets connected to whichever account you use, so
-> it needs to be one only you can get into."
+Say it when you ask, not after she answers:
 
-**There are four separate reasons, and they fail in different directions.** Know all four,
-because which one applies depends on who she is sharing with, and because a student who
-pushes back deserves a real answer rather than a repeated rule.
+> "One thing before we start - your system gets attached to whichever account you sign in
+> with, so it needs to be the account for your business, and one nobody outside your
+> business can get into."
 
-**1. If the other person is also in this programme, the two systems collide.** This is the
-concrete one. Her system keeps a private backup in whichever account she signs in with,
-and that backup is her whole vault - her brand and voice files, her contacts, her
-pipeline, her buyers and past clients, her commissions. Two people on one account means
-both backups land in the same place, each of them able to read and change the other's, and
-both machines pushing into the same account. Her numbers and her clients become visible to
-the other person, and theirs to her. Neither of them chose that.
+**Two people who genuinely run one business together are fine on one account.** A husband
+and wife working every deal together, two partners in one firm, an agent and the assistant
+who is genuinely inside the business. They are one business, they get one system, and one
+account is the *correct* answer for them, not a compromise. Do not send them away to make
+a second account they do not need - a second account would mean a second system, and they
+do not need one of those either.
 
-**2. If the other person is not in the programme, it is a straight security problem for
-her.** Whoever else has that login can reach her system, and in time her client records
-and her financials. A spouse, an assistant, or the person who normally fixes her computer
-is still somebody who did not agree to hold her clients' information.
+**Where it actually breaks, and why:**
 
-**3. It is a security problem on our side too.** Access is issued to her, personally. A
-shared login hands the whole system to somebody who was never given it. She does not need
-a lecture about this, but you should not pretend it is only about her - if she asks
-directly, say it plainly and without accusation: her access is hers, and it is not
-transferable.
+**1. Two separate systems on one account.** This is the real failure. Her system keeps a
+private backup in whichever account she signs in with, and that backup is her whole vault -
+brand and voice files, contacts, pipeline, buyers and past clients, commissions. Two
+people each running their *own* business, each with their own system, on one shared login,
+means both backups land in the same place, each able to read and change the other's, both
+machines pushing into it. Her numbers and clients visible to them, theirs to her. Neither
+chose that. **Two businesses, two accounts. No exceptions.**
 
-**4. If the account is not really hers, she can be locked out of her own system.** One
-forgotten password, one falling-out, one assistant who leaves, and the system she has been
-building on is behind someone else's login with nobody able to fix it for her.
+**2. Somebody outside the business holds the login.** Her son who set it up years ago, the
+tech person who used to help her, a former assistant, the office account. They are not in
+her business, and that login reaches her client records and her financials. It has to be
+an account only her business can get into.
 
-**Which of these to say:** lead with 1 and 2, because they are hers and they are concrete.
-Add 4 if she is still weighing it. Reach for 3 only if she asks why it matters to us, and
-say it once, flatly. Never open with 3 - leading with our interests reads as distrust of
-her, and she has done nothing to earn that.
+**3. She can be locked out of her own system.** If the login really belongs to somebody
+else - her son, the brokerage, an assistant who leaves - one forgotten password or one
+falling-out puts her system behind a door she cannot open, with nobody able to fix it.
 
-**The four you will actually hit**, and none of them qualify:
+**4. Access is issued to her business, not passed around.** A login shared outside the
+business hands the whole system to somebody who was never given it. She does not need a
+lecture on this, and you should never open with it - leading with our interests reads as
+distrust of someone who has done nothing wrong. If she asks directly why it matters to us,
+say it once, flatly, and move on.
 
-- **"My husband and I share everything."** Common, and warm, and still no. Two people, two
-  accounts. **Ask whether he is in the programme too** - if he is, this is reason 1 and it
-  is the worst version: their two systems would sit on top of each other, each able to see
-  and change the other's clients and numbers. Both of them need their own.
-- **"My assistant set it up"** or *"my TC has the login."* That is their account, not
-  hers, and access follows the account. Her assistant would be able to read every client
-  record and every commission in her system.
-- **"My son made me one years ago."** If he still has the password, it is not hers. She
-  can take it over by changing the password and the recovery email, or start a fresh one -
-  fresh is usually simpler, and cheaper than finding out later.
-- **"The office has one"** / a brokerage-provided account. It goes when the brokerage
-  does, and she does not control it.
+**Which to say:** lead with 1 or 2, whichever fits what she just told you. Add 3 if she is
+still weighing it. Reach for 4 only if asked.
 
-**If it turns out to be shared, do not treat it as a problem she caused.** She had no way
-to know. Say it plainly and move: *"Ah - then let's make you your own, it takes two
-minutes and it saves a real headache later."* Then go to Step 4a.
+**The cases you will actually hit:**
+
+- **"My husband and I share everything."** **Ask one question: are you two running one
+  business, or two?** One business, working the same deals, same brand - one account, one
+  system, and that is right. Two separate books of business, or both enrolled separately
+  wanting their own system - two accounts, because of reason 1.
+- **"My assistant set it up"** or *"my TC has the login."* Depends whether they are inside
+  the business. If the assistant genuinely works in it, that is one business and it is
+  fine. If it is really their personal account that she borrows, that is reason 2 - and
+  reason 3 the day they leave.
+- **"My son made me one years ago."** If he still has the password and is not in her
+  business, that is reason 2. She can take it over by changing the password and the
+  recovery email, or start fresh - fresh is usually simpler.
+- **"The office has one"** / a brokerage-provided account. No: it holds other people's
+  things, it goes when the brokerage does, and she does not control it.
+
+**Never treat any of this as a problem she caused.** She had no way to know. If it does
+need changing: *"Ah - then let's get you your own, it takes two minutes and it saves a
+real headache later."* Then go to Step 4a.
 
 **You cannot detect this from the machine.** Nothing in `gh auth status` says whether two
 people know the password. Asking is the only check there is, which is why it is asked
@@ -500,18 +508,18 @@ twice - here, and again when you read the username back at the end of the sign-i
    **Then confirm which account they landed on, out loud.** Run `gh auth status`, read the
    username back, and ask them to confirm it:
 
-   > "You're signed in as **their-username**. Is that your own account - just yours,
-   > nobody else has the login?"
+   > "You're signed in as **their-username**. Is that your business's account, and is
+   > there anyone outside your business who can get into it?"
 
    **Ask it as both questions at once, because it is two failures with one fix.** Plenty
    of people have two GitHub accounts - an old personal one and the one they actually use -
-   and the browser signs in as whichever was already logged in. And a shared account will
-   sail straight through the sign-in looking perfect.
+   and the browser signs in as whichever was already logged in. And an account somebody
+   outside the business can reach will sail straight through the sign-in looking perfect.
 
    Nothing later in this skill can catch either one. This question is the last chance to
-   catch them while it is still free to fix. If it is the wrong account or a shared one,
-   sign out and start over rather than carrying on - two minutes now against a locked-out
-   student later.
+   catch them while it is still free to fix. If it is the wrong account, or one an outsider
+   can open, or one that is about to carry a second person's separate system, sign out and
+   start over rather than carrying on - two minutes now against an unpickable mess later.
 2. **Two-factor codes**, whenever their phone asks.
 
 ### Step 4a - If they do not have a GitHub account yet
@@ -519,11 +527,12 @@ twice - here, and again when you read the username back at the end of the sign-i
 This is the most likely branch in the whole skill, and the one where a nervous person is
 most likely to quietly give up. Treat it as a normal part of the path, not an exception.
 
-**The account she creates here is hers alone.** She picks the password, she keeps it, and
-nobody else gets it - not her assistant, not her husband, not the person who normally
-sorts out her computer. If someone else is sitting with her helping, that is fine, but the
-password is hers and she should be the one typing it. Say it once, plainly, while she is
-choosing it.
+**This account belongs to her business, and the password stays inside it.** She picks it,
+she keeps it, and it does not go to anyone outside the business - not the person who
+normally sorts out her computer, not a former assistant. If she runs the business with a
+partner or spouse, that partner is inside it and this is their shared account; if she is
+on her own, it is hers alone. Either way she is the one typing the password, even if
+somebody is sitting with her helping. Say it once, plainly, while she is choosing it.
 
 **This is the one part where she types a lot, and you should say so up front.** Everything
 else in this skill was you doing the work. Signing up is her typing an email, a password,
@@ -629,14 +638,16 @@ has not asked, she is not worrying about it.
 It is where her system will live and how it gets to her, the way a file-sharing account
 works. She will barely touch it after today. Do not explain version control.
 
-**"Can my husband and I just use one account?"** / **"Can I use the office one?"**
-No, and this is worth the thirty seconds. Her system keeps a private backup in whichever
-account she signs in with, and that backup holds her clients, her pipeline and her
-commissions. Sharing means whoever else has that login can read all of it. **If the other
-person is also in the programme it is worse** - both systems land in the same account,
-each able to change the other's, so her numbers and theirs get tangled together. And if
-the login is not really hers, one changed password locks her out of her own system. Two
-people, two accounts. Full reasoning in Step 4.
+**"Can my husband and I just use one account?"**
+Ask one question back: are you running one business together, or two? **One business, one
+account, one system - that is the right answer and nothing needs changing.** Two separate
+books of business, each wanting their own system, means two accounts: her system keeps a
+private backup holding her clients, pipeline and commissions, and two systems on one login
+means each of them can read and change the other's. Full reasoning in Step 4.
+
+**"Can I use the office one?"** / **"My brokerage gave me an account."**
+No. It holds other people's things, she does not control it, and it stops being hers the
+day she changes brokerages - with her system stuck behind it.
 
 **"My son set one up for me years ago - can I use that?"**
 Only if he no longer has the password. If he does, it is his account with her name on it.
@@ -724,9 +735,9 @@ time, in plain words.
 - Never give out an email address for support, and never suggest emailing anyone.
 - Never create a GitHub account for them, type their password or email into a signup
   form, or complete a human-verification puzzle on their behalf.
-- Never let a shared, office, spouse's, assistant's, or someone-else-set-it-up account
-  through. Ask twice, and start a fresh one the moment the answer is anything but "just
-  mine".
+- Never let two separate systems end up on one account, and never let an account somebody
+  outside the business can open through. Ask twice. (Two people genuinely running one
+  business on one account is correct - do not send them off to make a second.)
 - Never take a backup over a backup that already exists.
 - Never go looking for their operating system, check whether they can reach it, download
   it, name a folder for it, or say where it lives. They have no access to it yet, by
