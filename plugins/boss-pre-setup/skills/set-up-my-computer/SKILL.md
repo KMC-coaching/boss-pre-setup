@@ -169,6 +169,12 @@ the same words again.
 >
 > If anything I say doesn't make sense, just tell me and I'll say it another way.
 >
+> And if for any reason we can't get through this today, that's what the office hours
+> sessions are for - someone will walk you through it live. This part does have to be
+> finished before your BOSS operating system can be installed, so don't leave it
+> half-done. If you haven't been given the calendar with the office hours on it yet,
+> ask your coach for it.
+>
 > Ready?"
 
 Wait for a yes.
@@ -599,15 +605,27 @@ their access for days.
 
 > "You're all set - your computer's ready.
 >
-> One last thing, and it's the important one. Your GitHub username is:
+> One last thing, and it's the important one, because it's what moves you on to
+> installing your actual BOSS operating system.
+>
+> You need to submit this form. It asks for your GitHub username, and this is yours:
 >
 > **their-username**
 >
-> Fill that into this form so we can get your system over to you:
->
 > https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9
 >
-> That's everything. Once that's in, your system comes next and I'll take it from there."
+> Here's what happens after you send it:
+>
+> **You'll get an email.** If it says you're successful, you're done with this part and
+> nothing else is needed from you right now.
+>
+> **If it says it failed**, that means the username didn't check out - usually a typo or
+> the wrong account. Check it and send it again; that same email has a link straight
+> back to this form.
+>
+> **Once it's successful, you'll be sent a calendar link** to book your live onboarding.
+> That session is where your BOSS operating system actually gets installed. This part was
+> only getting your computer ready for it."
 
 Three rules for this message:
 
@@ -616,9 +634,15 @@ Three rules for this message:
 - **Give the address as a plain link and do not open it for them.** It is their form to
   fill in, in their own browser, with their own details. Never fill it in on their behalf
   and never enter anything of theirs into it.
-- **Do not put a date on what happens next.** You do not know when their access lands.
-  "Your system comes next" is true. "In a few days" is a guess, and a guess here turns
-  into a support question when it slips.
+- **Do not put a date on any of it.** You do not know when the email arrives, when access
+  is granted, or when onboarding is scheduled. The sequence is true; the timing is a
+  guess, and a guess here turns into a support question the moment it slips.
+- **Say what a failure email means before they get one.** A student who receives "failed"
+  with no warning assumes they have broken something and stops. Told in advance that it
+  means a typo and that the email carries the link back, they just fix it and resend.
+- **Name what the live onboarding is for.** Without it, a student thinks today's session
+  was the install and wonders why nothing is on their computer. Today was the machine
+  being made ready; the system itself gets installed with a person, on that call.
 
 Then stop. Do not go looking for their system, do not offer to install anything else, and
 do not start another setup. If they ask what happens now, the honest answer is that their
