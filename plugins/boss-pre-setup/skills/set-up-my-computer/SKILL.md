@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 2.1.0
+version: 2.4.2
 ---
 
 # Set Up My Computer
