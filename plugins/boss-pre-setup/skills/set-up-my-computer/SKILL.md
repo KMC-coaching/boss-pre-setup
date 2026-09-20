@@ -284,6 +284,29 @@ a string of lookups. Never re-run something to confirm what the first command al
 printed. Four approvals and twenty approvals do identical work; the difference is
 entirely how you grouped them.
 
+## Step 1.5 - If this machine cannot run it, say so now
+
+Read the machine before promising anything. Three cases end the session early, and each
+one is far kinder said in the first two minutes than discovered in the twentieth.
+
+- **A Chromebook.** ChromeOS cannot run the app this is built for. A Chromebook with the
+  Linux feature switched on is a maybe, not a yes, and is not something to troubleshoot
+  with a student who is already nervous.
+- **An iPad, a phone, or any tablet.** This needs a Mac or a Windows computer.
+- **A work laptop so locked down that nothing can be installed.** This surfaces later as
+  repeated permission failures; if the machine blocks the first two installs outright,
+  stop rather than grinding.
+
+Say it plainly, and never make her feel she bought the wrong thing:
+
+> "This one needs a Mac or a Windows computer, and this machine isn't going to be able to
+> run it. That's not something you've done wrong. If you have another computer, we can do
+> it there in fifteen minutes. If you don't, bring it to office hours and someone will
+> sort out the best way forward with you."
+
+Then stop. Do not half-install anything, and do not leave her mid-way through a process
+that cannot finish.
+
 ## Step 2 - Read the machine, once
 
 One script. Not a series of questions to the computer.
@@ -311,11 +334,39 @@ one, it is the wrong path. There is always another way, and the one below is it.
   `git --version` answers, then continue.
 - **Windows:** `winget install --id Git.Git --silent --accept-package-agreements
   --accept-source-agreements`.
+
+  **Check `winget` actually exists first.** It ships with Windows 11 and with Windows 10
+  from the 2018 update onward, but an older or tightly managed machine may not have it,
+  and the command then fails with "not recognized" - which reads to her like the setup is
+  broken. If it is missing, do not try to install it and do not send her to the Microsoft
+  Store. Download Git for Windows directly from its official installer instead, the same
+  way the GitHub tool is fetched below, and say one plain line: *"Your Windows is a
+  slightly older one, so I'm putting this in a different way. Nothing for you to do."*
 - **Linux:** whichever of `apt-get`, `dnf` is present, user-scope where possible.
 
 ### The GitHub tool
 
 Never install this through a package manager that wants a password.
+
+**Work out which build this machine needs before fetching anything.** Every one of
+these exists and was confirmed downloadable on 2026-09-20. Getting this wrong on an
+older machine is the difference between a working install and a file that will not run.
+
+| The machine in front of her | Build |
+|---|---|
+| Mac, Apple silicon (M1 to M4) | `macOS_arm64.zip` |
+| Mac, Intel - anything up to about 2020 | `macOS_amd64.zip` |
+| Windows 10 or 11, 64-bit | `windows_amd64.zip` |
+| Windows on ARM (Surface Pro X and similar) | `windows_arm64.zip` |
+| Windows 32-bit, genuinely old | `windows_386.zip` |
+| Linux, Intel | `linux_amd64.tar.gz` |
+| Linux, ARM | `linux_arm64.tar.gz` |
+
+`uname -m` answers this on Mac and Linux: `arm64`/`aarch64` means arm64, `x86_64` means
+amd64. On Windows read `PROCESSOR_ARCHITECTURE`, and note that a 32-bit shell on a 64-bit
+machine reports the wrong answer - `PROCESSOR_ARCHITEW6432` is the one to trust when it
+is set. **Never assume Apple silicon.** Plenty of agents are still on Intel Macs, and an
+arm64 binary on an Intel Mac fails in a way that reads like a broken download.
 
 - **Mac and Linux:** **resolve the download address from the releases API - never
   construct it by hand.** There is no version-less "latest/download" file to guess at:

@@ -18,7 +18,12 @@ jobs:
         # macos-13 is being retired by GitHub; its runners no longer pick up
         # these jobs, so every run came back "cancelled" while the other three
         # passed 11/11. A red page that means nothing is worse than no page.
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # Deliberately spread across ages and architectures, not just "latest".
+        # macos-15 is Apple silicon, macos-14 covers the older Sonoma runners,
+        # windows-2022 is what a machine bought a few years ago still runs, and
+        # ubuntu-22.04 stands in for older Linux and Chromebook containers.
+        os: [ubuntu-latest, ubuntu-22.04, macos-latest, macos-15, macos-14,
+             windows-latest, windows-2022]
     steps:
       - uses: actions/checkout@v4
 
