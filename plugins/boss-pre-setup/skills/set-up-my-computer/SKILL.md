@@ -284,25 +284,33 @@ a string of lookups. Never re-run something to confirm what the first command al
 printed. Four approvals and twenty approvals do identical work; the difference is
 entirely how you grouped them.
 
-## Step 1.5 - If this machine cannot run it, say so now
+## Step 1.5 - If this machine is not a Mac or a Windows computer
 
 Read the machine before promising anything. Three cases end the session early, and each
 one is far kinder said in the first two minutes than discovered in the twentieth.
 
-- **A Chromebook.** ChromeOS cannot run the app this is built for. A Chromebook with the
-  Linux feature switched on is a maybe, not a yes, and is not something to troubleshoot
-  with a student who is already nervous.
-- **An iPad, a phone, or any tablet.** This needs a Mac or a Windows computer.
-- **A work laptop so locked down that nothing can be installed.** This surfaces later as
-  repeated permission failures; if the machine blocks the first two installs outright,
-  stop rather than grinding.
+**Never tell her this machine cannot run Claude.** She is talking to you on it, so it
+plainly can, and saying otherwise is the fastest way to lose her trust for the rest of
+the session. The question is narrower: the operating system she is being set up for is
+built for **Mac and Windows**. Everything below is about that, not about Claude.
 
-Say it plainly, and never make her feel she bought the wrong thing:
+- **Anything that is not a Mac or a Windows machine** - a Chromebook, a Linux laptop.
+  The tools here will install and the sign-in will work, so this session can honestly
+  finish. What cannot be promised is the system itself, which is not built for these yet.
+  Get her through the setup, and at the end say plainly that her machine is an unusual
+  one for this programme and to raise it at office hours before the onboarding call,
+  so nobody is surprised on the day.
+- **An iPad, a phone, or any tablet.** These genuinely cannot do this. Stop here.
+- **A work laptop so locked down that nothing can be installed.** This shows up as
+  repeated refusals on the first two installs. If both are blocked outright, stop rather
+  than grinding, and send her to office hours.
 
-> "This one needs a Mac or a Windows computer, and this machine isn't going to be able to
-> run it. That's not something you've done wrong. If you have another computer, we can do
-> it there in fifteen minutes. If you don't, bring it to office hours and someone will
-> sort out the best way forward with you."
+For the two that really do stop, say it plainly and never let her feel she bought the
+wrong thing:
+
+> "This part needs a Mac or a Windows computer. That's not something you've done wrong.
+> If you have another computer, we can do this there in fifteen minutes. If you don't,
+> bring it to office hours and someone will sort out the best way forward with you."
 
 Then stop. Do not half-install anything, and do not leave her mid-way through a process
 that cannot finish.
