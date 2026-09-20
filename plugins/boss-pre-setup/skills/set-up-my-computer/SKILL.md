@@ -284,28 +284,26 @@ a string of lookups. Never re-run something to confirm what the first command al
 printed. Four approvals and twenty approvals do identical work; the difference is
 entirely how you grouped them.
 
-## Step 1.5 - If this machine is not a Mac or a Windows computer
+## Step 1.5 - The two machines that genuinely cannot do this
 
 Read the machine before promising anything. Three cases end the session early, and each
 one is far kinder said in the first two minutes than discovered in the twentieth.
 
 **Never tell her this machine cannot run Claude.** She is talking to you on it, so it
 plainly can, and saying otherwise is the fastest way to lose her trust for the rest of
-the session. The question is narrower: the operating system she is being set up for is
-built for **Mac and Windows**. Everything below is about that, not about Claude.
+the session. Almost every machine can do this step. Only two genuinely cannot, and both
+are worth catching in the first two minutes rather than the twentieth.
 
-- **Anything that is not a Mac or a Windows machine** - a Chromebook, a Linux laptop.
-  The tools here will install and the sign-in will work, so this session can honestly
-  finish. What cannot be promised is the system itself, which is not built for these yet.
-  Get her through the setup, and at the end say plainly that her machine is an unusual
-  one for this programme and to raise it at office hours before the onboarding call,
-  so nobody is surprised on the day.
+- **Mac, Windows and Linux all work here.** Every tool this step installs has a build
+  for all three, and the sign-in is the same everywhere. Run the setup normally and do
+  not single anyone out for the computer they own. A Chromebook only counts as Linux
+  once its Linux feature is switched on; without it, it belongs with the tablets below.
 - **An iPad, a phone, or any tablet.** These genuinely cannot do this. Stop here.
 - **A work laptop so locked down that nothing can be installed.** This shows up as
   repeated refusals on the first two installs. If both are blocked outright, stop rather
   than grinding, and send her to office hours.
 
-For the two that really do stop, say it plainly and never let her feel she bought the
+When one of those two is the case, say it plainly and never let her feel she bought the
 wrong thing:
 
 > "This part needs a Mac or a Windows computer. That's not something you've done wrong.
