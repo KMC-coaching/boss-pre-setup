@@ -15,7 +15,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, macos-13, windows-latest]
+        # macos-13 is being retired by GitHub; its runners no longer pick up
+        # these jobs, so every run came back "cancelled" while the other three
+        # passed 11/11. A red page that means nothing is worse than no page.
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
 
