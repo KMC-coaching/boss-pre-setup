@@ -33,6 +33,18 @@ that than you are.
 
 ## The two rules that matter more than the steps
 
+### 0. Never hand a Windows machine a bash command
+
+Every shell line in this file is bash unless it says otherwise, and Windows runs
+PowerShell. `mktemp`, `pkill`, `/dev/null`, `$(...)`, `grep`, `chmod` and `~/` are all
+absent or parse-errors there, and a student meets them as a wall of red on a step they
+cannot skip.
+
+Before running any command on Windows, ask which shell it is written for. If a step
+gives only a Mac and Linux form, it needs a PowerShell form written and checked before
+it is run - not improvised at the keyboard in front of her. A guessed PowerShell line is
+the same failure as a guessed download address, and it lands at the worst moment.
+
 ### 1. They never type a command. Not once.
 
 If you are about to say "open your terminal", "paste this", "run this command", or
@@ -434,11 +446,30 @@ twice - here, and again when you read the username back at the end of the sign-i
    in this file; a predictable name in a world-readable folder collides between runs and
    between accounts on a shared machine.
 
+   **Mac and Linux:**
+
    ```
    SIGNIN=$(mktemp -t boss-signin)
    gh auth login --hostname github.com --git-protocol https --web \
      --scopes "repo,read:org,gist,workflow" < /dev/null > "$SIGNIN" 2>&1 &
    ```
+
+   **Windows.** That command is bash and Windows cannot run it - `mktemp` does not
+   exist, and PowerShell refuses to parse `< /dev/null` at all, with "The '<' operator
+   is reserved for future use." It fails before anything starts, on the one step nobody
+   can skip. Verified against PowerShell 7.6.6 on 2026-09-20. Use this instead:
+
+   ```
+   $signin = Join-Path $env:TEMP "boss-signin.txt"
+   Start-Process -FilePath "gh" -NoNewWindow `
+     -RedirectStandardOutput $signin -RedirectStandardError "$signin.err" `
+     -ArgumentList @("auth","login","--hostname","github.com","--git-protocol","https",
+                     "--web","--scopes","repo,read:org,gist,workflow")
+   Start-Sleep -Seconds 2
+   Get-Content $signin, "$signin.err" -ErrorAction SilentlyContinue
+   ```
+
+   On Windows the code may land on either stream, so read both.
 
    Within a second or two that file holds the code and the address. **Do not pattern-match
    on the exact wording.** It has already changed once and will change again: gh 2.101.0
@@ -492,8 +523,16 @@ twice - here, and again when you read the username back at the end of the sign-i
    refers to nothing and silently does nothing, leaving the old attempt alive to collide
    with the new one. Match the process instead:
 
+   **Mac and Linux:**
+
    ```
    pkill -f "gh auth login" || true
+   ```
+
+   **Windows** has no `pkill`:
+
+   ```
+   Get-Process gh -ErrorAction SilentlyContinue | Stop-Process -Force
    ```
 
    Then tell her the old code is dead and not to use it. A student holding two codes will
