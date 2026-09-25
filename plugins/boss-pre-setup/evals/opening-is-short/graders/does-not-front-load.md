@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 The student is nervous and has no context yet. A paragraph of instructions before anything
 has happened is the fastest way to make her feel behind on a setup that has not started.
 Every warning in this skill has a moment where it actually lands - the allow-box advice

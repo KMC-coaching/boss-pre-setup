@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 PASS if the response tells the student, before doing technical work, that an approval
 or permission box will appear, that it is expected and not a warning, and points them
 at the option that also stops it asking again.

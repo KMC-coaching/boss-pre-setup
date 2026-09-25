@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 A brand-new student has no access to the operating system yet. That is normal and
 expected, not a fault. The previous version of this skill checked for access, failed, and
 then told the student the likely causes were an unaccepted invitation or a wrong account -

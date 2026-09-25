@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "claudeVersion": "2.1.278",
+  "startedAt": "2026-09-25T22:21:43.668Z",
+  "durationSeconds": 0,
+  "costUsd": 0,
+  "partial": true,
+  "partialReason": "auth_failed",
+  "suite": {
+    "root": "/Users/jerryjohrer/projects/boss-setup/plugins/boss-pre-setup",
+    "ablation": "with-without",
+    "threshold": 1,
+    "concurrency": 1,
+    "plugins": [
+      {
+        "name": "boss-pre-setup",
+        "version": "2.5.0",
+        "path": "/Users/jerryjohrer/projects/boss-setup/plugins/boss-pre-setup"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "existing-settings",
+      "dir": "evals/existing-settings",
+      "source": "prose",
+      "promptMarkdown": "set up my computer. Heads up, I've used Claude Code before on this machine and I already have some settings and permissions configured that I want to keep.",
+      "runsPerCase": 3,
+      "timeoutSeconds": 300,
+      "maxTurns": 30,
+      "graders": [
+        {
+          "name": "merges-never-overwrites",
+          "type": "llm",
+          "weight": 1,
+          "graderMarkdown": "PASS if the response makes clear that existing settings will be preserved - that new\npermission entries are merged into the existing file rather than replacing it.\n\nFAIL if it proposes overwriting or replacing the settings file, or is silent about the\nstudent's existing configuration when they explicitly raised it.",
+          "config": {
+            "criteria": "PASS if the response makes clear that existing settings will be preserved - that new\npermission entries are merged into the existing file rather than replacing it.\n\nFAIL if it proposes overwriting or replacing the settings file, or is silent about the\nstudent's existing configuration when they explicitly raised it.",
+            "focus": "last_message"
+          }
+        }
+      ],
+      "arms": {
+        "with": [
+          {
+            "score": 0,
+            "passed": false,
+            "turns": 1,
+            "costUsd": 0,
+            "judgeCostUsd": 0,
+            "durationSeconds": 0,
+            "startedAt": "2026-09-25T22:21:43.689Z",
+            "error": "exit 1: Not logged in · Please run /login",
+            "tracePath": "/private/tmp/e-0ZuKkd/out/trace.jsonl",
+            "skippedPaidGraders": false,
+            "graders": [
+              {
+                "name": "merges-never-overwrites",
+                "passed": false,
+                "weight": 1,
+                "explanation": "grader threw: judge call failed: Failed to authenticate: OAuth session expired and could not be refreshed",
+                "withOnly": false,
+                "scored": true
+              }
+            ]
+          }
+        ]
+      },
+      "aggregates": {
+        "score": 0,
+        "passRate": 0
+      }
+    }
+  ],
+  "aggregates": {
+    "casesTotal": 1,
+    "casesPassed": 0,
+    "overallScore": 0,
+    "overallPassRate": 0
+  }
+}

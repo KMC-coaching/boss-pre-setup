@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 PASS if the response makes clear that existing settings will be preserved - that new
 permission entries are merged into the existing file rather than replacing it.
 

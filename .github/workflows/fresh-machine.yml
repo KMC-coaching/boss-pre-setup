@@ -120,6 +120,63 @@ jobs:
           [ $FAIL -eq 0 ] && echo "clean: no sudo, no Homebrew, no password request"
           exit $FAIL
 
+      - name: The pinned fallback must work when the lookup is unavailable
+        shell: bash
+        run: |
+          # Added 2026-09-25. The old instruction was to fall back to "whichever
+          # package manager is already on the machine", which on a Mac with no
+          # Homebrew is a dead end with no next step - the real failure a student
+          # hit. The fallback is now a pinned address, and it has to resolve and
+          # RUN on every platform, with no lookup and no package manager.
+          PIN=$(grep -oE 'https://github\.com/cli/cli/releases/download/v[0-9.]+/gh_[0-9.]+_macOS_arm64\.zip' \
+                plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md | head -1)
+          [ -n "$PIN" ] || { echo "::error::no pinned fallback address found in the skill"; exit 1; }
+          VER=$(echo "$PIN" | sed -E 's|.*/download/v([0-9.]+)/.*|\1|')
+          EXT=zip; [ "$OS" = linux ] && EXT=tar.gz
+          URL="https://github.com/cli/cli/releases/download/v${VER}/gh_${VER}_${OS}_${ARCH}.${EXT}"
+          echo "pinned v$VER -> $URL"
+          C=$(curl -s -o /dev/null -w '%{http_code}' -L "$URL")
+          [ "$C" = "200" ] || { echo "::error::pinned fallback returned HTTP $C"; exit 1; }
+          # and prove it installs and runs with no lookup, no package manager
+          FB="$RUNNER_TEMP/fb"; mkdir -p "$FB/bin"
+          curl -fsSL -o "$RUNNER_TEMP/fb.$EXT" "$URL"
+          if [ "$EXT" = zip ]; then unzip -q "$RUNNER_TEMP/fb.$EXT" -d "$FB/un"
+          else mkdir -p "$FB/un" && tar -xzf "$RUNNER_TEMP/fb.$EXT" -C "$FB/un"; fi
+          FBIN=$(find "$FB/un" -type f \( -name gh -o -name gh.exe \) | head -1)
+          [ -n "$FBIN" ] || { echo "::error::no gh inside the pinned archive"; exit 1; }
+          cp "$FBIN" "$FB/bin/"; chmod +x "$FB/bin/"* || true
+          G="$FB/bin/gh"; [ -f "$G.exe" ] && G="$G.exe"
+          "$G" --version || { echo "::error::pinned fallback installed but will not run"; exit 1; }
+          echo "pinned fallback works on $OS/$ARCH with no package manager"
+
+      - name: The dead end must stay gone
+        shell: bash
+        run: |
+          S=plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md
+          if grep -n 'fall back to whichever package manager' "$S"; then
+            echo "::error::the package-manager dead end is back"; exit 1
+          fi
+          grep -q 'Homebrew is never the answer' "$S" \
+            || { echo "::error::the no-Homebrew statement was removed"; exit 1; }
+          echo "clean: no package-manager fallback, no-Homebrew rule stated"
+
+      - name: Copy blocks must never be language-tagged
+        shell: bash
+        run: |
+          # A ```bash block gets a Run button in the desktop app. The sign-in code
+          # and the username are displayed in fenced blocks so they get a COPY
+          # button; tagging one turns a student's own login code into something
+          # she can click Run on.
+          S=plugins/boss-pre-setup/skills/set-up-my-computer/SKILL.md
+          if grep -nE '^\s*```(bash|sh|shell|console)\s*$' "$S"; then
+            echo "::error::a language-tagged fence exists; it would render a Run button"; exit 1
+          fi
+          grep -q 'copy button on the right of this box' "$S" \
+            || { echo "::error::the copy-button presentation was removed"; exit 1; }
+          grep -q 'https://github.com/login/device' "$S" \
+            || { echo "::error::the device link lost its https scheme"; exit 1; }
+          echo "clean: no tagged fences, copy blocks and clickable links present"
+
       - name: The invented URL must stay dead (regression guard)
         shell: bash
         run: |

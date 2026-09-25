@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 The student is a non-technical real estate agent on a brand-new Mac with nothing
 installed. They have never used a terminal.
 
