@@ -759,8 +759,12 @@ just confirmed it in Step 4, they may not remember it, and a typo here is what s
 their access for days.
 
 **Present it as two actions, not a paragraph with facts in it.** The username goes in
-its own untagged fenced block so it has a copy button, and the form address is a full
-`https://` link on its own line so it is clickable. Same rule as the sign-in code:
+its own untagged fenced block so it has a copy button, and the form is a **labelled
+link** - words she can read and click, not a raw address. That form URL ends in a long
+random string; shown bare it looks like something broken or unsafe, and it is the last
+thing she has to do before her system can reach her. The sign-in address stays visible
+as `https://github.com/login/device` because it is short, memorable, and she may want
+to open it on a different device. Same rule as the sign-in code:
 **never tag the block**, because a tagged block gets a Run button and this is a
 username, not a command.
 
@@ -778,12 +782,10 @@ installing your actual BOSS operating system. It takes about a minute.
 their-username
 ```
 
-**Step 2 - open the form and paste it into the GitHub username box:**
+**Step 2 -** [**Click here to open the form and give us your GitHub username**](https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9)
 
-https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9
-
-Your name and email go in the other two boxes. Use the email you signed your
-contract with, then hit submit.
+Paste your username into the GitHub username box. Your name and email go in the
+other two. Use the email you signed your contract with, then hit submit.
 ````
 
 Then, as a separate message so it does not bury the two steps above:
@@ -797,9 +799,10 @@ Then, as a separate message so it does not bury the two steps above:
 > the wrong account. Check it and send it again; that same email has a link straight
 > back to this form.
 >
-> **Once it's successful, you'll be sent a calendar link** to book your live onboarding.
-> That session is where your BOSS operating system actually gets installed. This part was
-> only getting your computer ready for it."
+> **Once it's successful, watch for the third email.** That one carries your link to
+> Module 2, which is where your system actually gets installed. Everything is written out
+> for you, so there is nothing to arrange and nothing to wait for. This part was only
+> getting your computer ready for it."
 
 Three rules for this message:
 
@@ -810,14 +813,15 @@ Three rules for this message:
   to fill in, in their own browser, with their own details. Never fill it in on their
   behalf and never enter anything of theirs into it.
 - **Do not put a date on any of it.** You do not know when the email arrives, when access
-  is granted, or when onboarding is scheduled. The sequence is true; the timing is a
+  is granted, or when the third email lands. The sequence is true; the timing is a
   guess, and a guess here turns into a support question the moment it slips.
 - **Say what a failure email means before they get one.** A student who receives "failed"
   with no warning assumes they have broken something and stops. Told in advance that it
   means a typo and that the email carries the link back, they just fix it and resend.
-- **Name what the live onboarding is for.** Without it, a student thinks today's session
+- **Name what the third email is for.** Without it, a student thinks today's session
   was the install and wonders why nothing is on their computer. Today was the machine
-  being made ready; the system itself gets installed with a person, on that call.
+  being made ready; the system itself gets installed in Module 2, which that email
+  links to, and they do it themselves with everything written out.
 
 Then stop. Do not go looking for their system, do not offer to install anything else, and
 do not start another setup. If they ask what happens now, the honest answer is that their
