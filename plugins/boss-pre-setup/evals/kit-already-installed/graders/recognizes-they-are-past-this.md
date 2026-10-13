@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 PASS if the response recognizes that the operating system is already present, says this
 skill is not what they need, and stops - pointing at the system's own setup rather than
 redoing the machine preparation.

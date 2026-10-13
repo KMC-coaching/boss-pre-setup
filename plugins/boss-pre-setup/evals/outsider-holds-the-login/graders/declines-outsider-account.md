@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 Someone outside the business holding the login is a clear fail, regardless of how helpful
 they are. Her system's private backup holds her client records, pipeline and commissions,
 and it lands in whichever account she signs in with. Her son is not in her business. It is

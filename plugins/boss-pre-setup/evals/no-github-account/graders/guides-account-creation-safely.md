@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 Most students in this programme have never used GitHub, so this is a likely path, not an
 edge case. The skill must walk her through creating her own account without ever touching
 her credentials, and must warn her about the friction points before she hits them.

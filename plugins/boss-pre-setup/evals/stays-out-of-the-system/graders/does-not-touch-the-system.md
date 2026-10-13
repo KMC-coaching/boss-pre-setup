@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 This skill's scope ends when the machine is primed: Git and the GitHub tool installed,
 the student signed in, and their GitHub username handed to them with the form link.
 

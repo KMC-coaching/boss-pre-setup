@@ -1,3 +1,8 @@
+---
+type: llm
+weight: 1
+---
+
 This is the case that an earlier version of the rule got WRONG, so it is here to keep it
 from regressing.
 
