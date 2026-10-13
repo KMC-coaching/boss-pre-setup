@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 2.4.2
+version: 2.5.0
 ---
 
 # Set Up My Computer
@@ -252,6 +252,13 @@ The entries to ensure are present:
 "Bash(winget:*)"
 ```
 
+`Bash(python3:*)` is the one entry nothing in THIS skill uses, and it stays. This file
+writes the **user-level** settings that apply in every folder she will ever open,
+including the system folder that does not exist yet, and 87 of the skills waiting in
+that system run `python3` directly. Dropping the line here does not save her anything
+today; it hands her an approval box on nearly every skill she runs for the rest of the
+year. It costs one line and it is the whole point of Step 1.
+
 That list is deliberately not `Bash(*)`. These are the least technical people who will
 ever run this, and blanket-allowing everything removes the last thing standing between
 them and a bad instruction later. Everything the install needs is above; nothing else is.
@@ -318,8 +325,15 @@ that cannot finish.
 One script. Not a series of questions to the computer.
 
 Find out: the operating system, the processor family, whether Git is present, whether the
-GitHub tool is present, whether a usable Python is present, and where their home folder
-is. Print it as a short block and move on. Do not show them the raw output.
+GitHub tool is present, and where their home folder is. Print it as a short block and
+move on. Do not show them the raw output.
+
+**Do not check for Python and do not install it.** Nothing in this skill uses it, and
+nothing downstream asks her to have it. On a Mac it arrives on its own with the Apple
+tools that Step 3 installs for Git, and on every other machine the things that use it
+later already work without it. It used to be checked here and then never acted on,
+which is worse than not checking: a missing tick in a list she can half-see reads as
+something broken.
 
 Everything downstream branches off this. Nothing downstream may assume Mac.
 
@@ -386,9 +400,27 @@ arm64 binary on an Intel Mac fails in a way that reads like a broken download.
   home folder.
 
   If that lookup fails or is rate-limited, do not guess a URL. Say one line - *"The
-  download list is busy, trying again"* - wait a few seconds and retry it. Only if it
-  keeps failing, fall back to whichever package manager is already on the machine, and
-  never install one.
+  download list is busy, trying again"* - wait a few seconds and retry it.
+
+  **If it keeps failing, use the pinned address below. Do not reach for a package
+  manager, and never install one.** The older instruction here was to fall back to
+  "whichever package manager is already on the machine", which on a Mac with no
+  Homebrew is a dead end with no next step - the setup simply stops, and it looks to
+  her like her computer is the problem. It is not. Verified working on a bare Mac with
+  no Homebrew on 2026-09-25:
+
+  `https://github.com/cli/cli/releases/download/v2.81.0/gh_2.81.0_macOS_arm64.zip`
+
+  The filename is `gh_<version>_<platform>_<arch>.<ext>`, built from the same matrix
+  above, so swap the platform and architecture for the machine in front of her and keep
+  the version. It is an older build than the API would give, and that is fine: it signs
+  in and it clones, which is all this needs. Download, unpack, place the one program
+  file in `~/.local/bin/`, make it runnable, and carry on exactly as above.
+
+  **Homebrew is never the answer to this, on any machine.** Installing it needs her
+  computer password, and a password prompt inside a tool call has nowhere to appear -
+  it hangs, or it fails with a confusing error while looking like the install broke.
+  There is no route through this step that needs a package manager at all.
 - **Windows:** `winget install --id GitHub.cli --silent --accept-package-agreements
   --accept-source-agreements`.
 
@@ -547,12 +579,39 @@ twice - here, and again when you read the username back at the end of the sign-i
    characters, a hyphen, four characters. If you cannot find one, read the file back and
    look at what is actually there rather than guessing or re-running.
 
-   Read the code out and **give it to them with the address, in one message**:
+   Read the code out and **give it to them with the address, in one message**.
 
-   > "Go to **github.com/login/device** and type in this code: **XXXX-XXXX**
-   >
-   > Sign in if it asks, approve on your phone if it asks, and come back here. I'll be
-   > watching for it - you don't need to tell me when you're done."
+   **Two rules about how it is presented, and they are not cosmetic.**
+
+   **Put the code in its own fenced block, and never tag that block.** A fenced block
+   gets a copy button, so she clicks once instead of retyping eight characters she
+   cannot see well. A block tagged `bash`, `sh` or `shell` gets a **Run** button
+   instead, and a nervous student who clicks Run on her own login code has been handed
+   a failure she has no way to understand. No language tag. Ever, in this skill.
+
+   **Give the address as a full `https://` link on its own line.** `github.com/login/device`
+   without the scheme, or wrapped in bold, is plain text she has to select and copy by
+   hand. With the scheme, on its own line, it is clickable.
+
+   Send this shape, numbered, so the copy and the paste are two obvious actions:
+
+````
+**Step 1 - copy your code.** There is a copy button on the right of this box:
+
+```
+XXXX-XXXX
+```
+
+**Step 2 - open this page and paste it in:**
+
+https://github.com/login/device
+
+Sign in if it asks, approve on your phone if it asks, then come back here. I'll be
+watching for it - you don't need to tell me when you're done.
+````
+
+   Nothing else in the message. Do not paste the raw output at her, do not explain what
+   a one-time code is, and never ask her to run the command herself.
 
    **Current versions also copy the code to her clipboard.** That is usually a help - she
    can paste instead of type - but it silently replaced whatever she had copied. Say it in
@@ -699,18 +758,39 @@ Read the username back off `gh auth status` rather than asking them for it. They
 just confirmed it in Step 4, they may not remember it, and a typo here is what stalls
 their access for days.
 
-> "You're all set - your computer's ready.
->
-> One last thing, and it's the important one, because it's what moves you on to
-> installing your actual BOSS operating system.
->
-> You need to submit this form. It asks for your GitHub username, and this is yours:
->
-> **their-username**
->
-> https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9
->
-> Here's what happens after you send it:
+**Present it as two actions, not a paragraph with facts in it.** The username goes in
+its own untagged fenced block so it has a copy button, and the form is a **labelled
+link** - words she can read and click, not a raw address. That form URL ends in a long
+random string; shown bare it looks like something broken or unsafe, and it is the last
+thing she has to do before her system can reach her. The sign-in address stays visible
+as `https://github.com/login/device` because it is short, memorable, and she may want
+to open it on a different device. Same rule as the sign-in code:
+**never tag the block**, because a tagged block gets a Run button and this is a
+username, not a command.
+
+Send this shape:
+
+````
+You're all set - your computer's ready.
+
+One last thing, and it's the important one, because it's what moves you on to
+installing your actual BOSS operating system. It takes about a minute.
+
+**Step 1 - copy your username.** There is a copy button on the right of this box:
+
+```
+their-username
+```
+
+**Step 2 -** [**Click here to open the form and give us your GitHub username**](https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9)
+
+Paste your username into the GitHub username box. Your name and email go in the
+other two. Use the email you signed your contract with, then hit submit.
+````
+
+Then, as a separate message so it does not bury the two steps above:
+
+> "Here's what happens after you send it:
 >
 > **You'll get an email.** If it says you're successful, you're done with this part and
 > nothing else is needed from you right now.
@@ -719,26 +799,29 @@ their access for days.
 > the wrong account. Check it and send it again; that same email has a link straight
 > back to this form.
 >
-> **Once it's successful, you'll be sent a calendar link** to book your live onboarding.
-> That session is where your BOSS operating system actually gets installed. This part was
-> only getting your computer ready for it."
+> **Once it's successful, watch for the third email.** That one carries your link to
+> Module 2, which is where your system actually gets installed. Everything is written out
+> for you, so there is nothing to arrange and nothing to wait for. This part was only
+> getting your computer ready for it."
 
 Three rules for this message:
 
-- **Give them the username. Do not ask for it.** They are being asked to type it into a
-  form; your job is to make sure the thing they type is right.
-- **Give the address as a plain link and do not open it for them.** It is their form to
-  fill in, in their own browser, with their own details. Never fill it in on their behalf
-  and never enter anything of theirs into it.
+- **Give them the username. Do not ask for it.** They are being asked to put it into a
+  form; your job is to make sure the thing that lands there is right, which is why it
+  goes in a copyable block rather than in a sentence they have to retype.
+- **Give the address as a clickable link and do not open it for them.** It is their form
+  to fill in, in their own browser, with their own details. Never fill it in on their
+  behalf and never enter anything of theirs into it.
 - **Do not put a date on any of it.** You do not know when the email arrives, when access
-  is granted, or when onboarding is scheduled. The sequence is true; the timing is a
+  is granted, or when the third email lands. The sequence is true; the timing is a
   guess, and a guess here turns into a support question the moment it slips.
 - **Say what a failure email means before they get one.** A student who receives "failed"
   with no warning assumes they have broken something and stops. Told in advance that it
   means a typo and that the email carries the link back, they just fix it and resend.
-- **Name what the live onboarding is for.** Without it, a student thinks today's session
+- **Name what the third email is for.** Without it, a student thinks today's session
   was the install and wonders why nothing is on their computer. Today was the machine
-  being made ready; the system itself gets installed with a person, on that call.
+  being made ready; the system itself gets installed in Module 2, which that email
+  links to, and they do it themselves with everything written out.
 
 Then stop. Do not go looking for their system, do not offer to install anything else, and
 do not start another setup. If they ask what happens now, the honest answer is that their
