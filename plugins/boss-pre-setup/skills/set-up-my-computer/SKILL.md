@@ -1,7 +1,7 @@
 ---
 name: set-up-my-computer
 description: Primes a brand-new student's computer so it is ready before anything else happens with them, without ever asking them to open a terminal or type a command. Settles what Claude is allowed to do, puts Git and the GitHub tool in place without admin rights, and signs them in to their own GitHub account through their browser. Stops there. Use when the student says "set up my computer", "set me up", "get me started", "prime my machine", "onboard me", "I just joined", or runs this plugin for the first time.
-version: 2.5.0
+version: 2.6.0
 ---
 
 # Set Up My Computer
@@ -747,7 +747,7 @@ browser, the sign-in may bind to the old one rather than the new. That is exactl
 username confirmation at the end of the sign-in is for - read it back and make sure it is
 the account she just created.
 
-## Step 5 - Hand them their username and the form, and stop
+## Step 5 - Hand them their username and the page, and stop
 
 The machine is primed. There is one thing left, and it is the thing that gets their
 system to them: **their GitHub username has to reach us, so they can be given access.**
@@ -759,12 +759,10 @@ just confirmed it in Step 4, they may not remember it, and a typo here is what s
 their access for days.
 
 **Present it as two actions, not a paragraph with facts in it.** The username goes in
-its own untagged fenced block so it has a copy button, and the form is a **labelled
-link** - words she can read and click, not a raw address. That form URL ends in a long
-random string; shown bare it looks like something broken or unsafe, and it is the last
-thing she has to do before her system can reach her. The sign-in address stays visible
-as `https://github.com/login/device` because it is short, memorable, and she may want
-to open it on a different device. Same rule as the sign-in code:
+its own untagged fenced block so it has a copy button, and the page is a **labelled
+link** - words she can read and click. The address is short and readable, so showing it
+bare is fine too if she asks for it, and worth her bookmarking: it is the same link
+every time and it is where her Module 2 button lives. Same rule as the sign-in code:
 **never tag the block**, because a tagged block gets a Run button and this is a
 username, not a command.
 
@@ -782,51 +780,55 @@ installing your actual BOSS operating system. It takes about a minute.
 their-username
 ```
 
-**Step 2 -** [**Click here to open the form and give us your GitHub username**](https://app.kristamashore.com/widget/form/YKntnvJemn7AtAqVY5f9)
+**Step 2 -** [**Click here to get your BOSS access**](https://boss-setup.kristamashore.com/get-boss)
 
-Paste your username into the GitHub username box. Your name and email go in the
-other two. Use the email you signed your contract with, then hit submit.
+Two boxes. Paste your username into the GitHub username box, and in the other one
+put the email you signed your contract with. Then press the button.
 ````
 
 Then, as a separate message so it does not bury the two steps above:
 
-> "Here's what happens after you send it:
+> "Here's what happens when you press it:
 >
-> **You'll get an email.** If it says you're successful, you're done with this part and
-> nothing else is needed from you right now.
+> **It answers you there and then, on the page.** No waiting on an email for this part.
 >
-> **If it says it failed**, that means the username didn't check out - usually a typo or
-> the wrong account. Check it and send it again; that same email has a link straight
-> back to this form.
+> **If something isn't right it says so, in plain words**, and it's almost always a typo
+> in one of the two boxes. Fix it and press the button again. Nothing you can type there
+> breaks anything.
 >
-> **Once it's successful, watch for the third email.** That one carries your link to
-> Module 2, which is where your system actually gets installed. Everything is written out
-> for you, so there is nothing to arrange and nothing to wait for. This part was only
-> getting your computer ready for it."
+> **Then one email, from GitHub.** Open it and click the green Accept invitation button.
+> That is the whole job in there. People get everything else right and never open this
+> one, and it is the commonest way the whole thing quietly stalls.
+>
+> **Then go back to that page.** There's a button on it straight to Module 2, which is
+> where your system actually gets installed. Bookmark that page while you're there -
+> it's the same link every time, so you can stop whenever you like and pick it up later.
+> Today was only getting your computer ready for it."
 
 Three rules for this message:
 
 - **Give them the username. Do not ask for it.** They are being asked to put it into a
   form; your job is to make sure the thing that lands there is right, which is why it
   goes in a copyable block rather than in a sentence they have to retype.
-- **Give the address as a clickable link and do not open it for them.** It is their form
+- **Give the address as a clickable link and do not open it for them.** It is their page
   to fill in, in their own browser, with their own details. Never fill it in on their
   behalf and never enter anything of theirs into it.
-- **Do not put a date on any of it.** You do not know when the email arrives, when access
-  is granted, or when the third email lands. The sequence is true; the timing is a
-  guess, and a guess here turns into a support question the moment it slips.
-- **Say what a failure email means before they get one.** A student who receives "failed"
-  with no warning assumes they have broken something and stops. Told in advance that it
-  means a typo and that the email carries the link back, they just fix it and resend.
-- **Name what the third email is for.** Without it, a student thinks today's session
-  was the install and wonders why nothing is on their computer. Today was the machine
-  being made ready; the system itself gets installed in Module 2, which that email
-  links to, and they do it themselves with everything written out.
+- **Do not put a date on any of it.** You do not know when the GitHub invitation arrives.
+  The sequence is true; the timing is a guess, and a guess here turns into a support
+  question the moment it slips.
+- **Say that the page may tell her something is wrong, before it does.** A student who
+  is told "we could not match that email" with no warning assumes she has broken
+  something and stops. Told in advance that it is almost always a typo and that she can
+  just press the button again, she fixes it and carries on.
+- **Name what the Module 2 button is for.** Without it, a student thinks today's session
+  was the install and wonders why nothing is on her computer. Today was the machine
+  being made ready; the system itself gets installed in Module 2, which that button
+  opens, and she does it herself with everything written out.
 
 Then stop. Do not go looking for their system, do not offer to install anything else, and
-do not start another setup. If they ask what happens now, the honest answer is that their
-access gets set up on our side once the form is in, and everything after that has its own
-walkthrough when it arrives.
+do not start another setup. If they ask what happens now, the honest answer is that the
+page sets their access up as soon as they fill it in, and everything after that is
+written out for them on the other side of it.
 
 ---
 
@@ -883,15 +885,18 @@ Yes, and nothing done is lost. She picks up by saying the same words again, and 
 looks at the machine and carries on from wherever it got to.
 
 **"I filled in the form - now what?"**
-Nothing. That is genuinely the end of her part. Her access gets set up on our side, and
-her system comes after that with its own walkthrough. **Do not put a date on it.**
+Two small things, both on the page in front of her. GitHub emails her an invitation and
+she clicks the green Accept button in it; then she comes back to that same page and
+presses the button to Module 2, which is where her system gets installed. That is the
+end of her part today. **Do not put a date on the GitHub email** - you do not know when
+it lands.
 
 **"Do I need to leave my computer on, or keep this open?"**
 No. She can close everything and shut down. Nothing is waiting on her machine.
 
 **"Do I need to do anything else to get ready?"**
-No. That is the whole point of today - the machine is ready, and the next part comes with
-its own instructions when it arrives.
+No. That is the whole point of today - the machine is ready, and the next part is written
+out for her on the page she just filled in, whenever she wants to start it.
 
 ## If she leaves and comes back
 
